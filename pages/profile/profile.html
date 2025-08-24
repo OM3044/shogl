@@ -1,0 +1,1401 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الملف الشخصي - شغلك</title>
+    <link rel="stylesheet" href="browser-compatibility.css">
+    <link rel="stylesheet" href="profile.css">
+    <link rel="stylesheet" href="../../shared/navigation.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Enhanced Dynamic Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="../../Images/تصميم بدون عنوان_20250805_160357_٠٠٠٠ (1).png" alt="شغلك Logo" class="nav-logo" width="50" height="50">
+                <h2><i class="#"></i> </h2>
+            </div>
+            <div class="nav-menu">
+                <a href="../../index.html" class="nav-link"><i class="fas fa-home"></i>الرئيسية</a>
+                <a href="../onboarding/onboarding.html" class="nav-link"><i class="fas fa-user-plus"></i>الترحيب</a>
+                <a href="../opportunities/opportunities.html" class="nav-link"><i class="fas fa-briefcase"></i>الفرص</a>
+                <a href="profile.html" class="nav-link active"><i class="fas fa-user"></i>الملف الشخصي</a>
+                <a href="../social/social.html" class="nav-link"><i class="fas fa-users"></i>المجتمع</a>
+                <a href="../messages/messages.html" class="nav-link"><i class="fas fa-envelope"></i>الرسائل</a>
+                <a href="../reporting/reporting.html" class="nav-link"><i class="fas fa-flag"></i>الإبلاغ</a>
+                <a href="../projects/project-submission.html" class="nav-link"><i class="fas fa-upload"></i>تقديم المشروع</a>
+            </div>
+            <div class="nav-user">
+                
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Enhanced Verification Modal -->
+    <div class="modal" id="verificationModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-shield-alt"></i> تحقق من هويتك</h3>
+                <button class="close-modal" id="closeVerificationModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="verification-steps">
+                    <div class="step active" data-step="1">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4><i class="fas fa-id-card"></i> تحميل صورة الهوية</h4>
+                            <p>قم بتحميل صورة واضحة من بطاقة الهوية أو جواز السفر</p>
+                            <div class="upload-area" id="idUploadArea">
+                                <input type="file" id="idUpload" accept="image/*" style="display: none;">
+                                <div class="upload-content">
+                                    <i class="fas fa-id-card"></i>
+                                    <h5>اضغط لتحميل صورة الهوية</h5>
+                                    <p>JPG, PNG - الحد الأقصى 5 ميجابايت</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="step" data-step="2">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4><i class="fas fa-camera"></i> صورة شخصية</h4>
+                            <p>قم بتحميل صورة شخصية واضحة لوجهك</p>
+                            <div class="upload-area" id="photoUploadArea">
+                                <input type="file" id="photoUpload" accept="image/*" style="display: none;">
+                                <div class="upload-content">
+                                    <i class="fas fa-camera"></i>
+                                    <h5>اضغط لتحميل الصورة الشخصية</h5>
+                                    <p>JPG, PNG - الحد الأقصى 5 ميجابايت</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="step" data-step="3">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4><i class="fas fa-info-circle"></i> معلومات إضافية</h4>
+                            <p>أضف معلومات إضافية للتحقق من هويتك</p>
+                            <div class="form-group">
+                                <label for="verificationPhone">رقم الهاتف <span class="required">*</span></label>
+                                <input type="tel" id="verificationPhone" placeholder="01001234567" value="01012345678" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="verificationAddress">العنوان</label>
+                                <textarea id="verificationAddress" placeholder="أدخل عنوانك الكامل" rows="3">123 شارع النصر، حي المعادي، القاهرة، مصر</textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="prevStepBtn" style="display: none;">
+                    <i class="fas fa-arrow-right"></i>
+                    السابق
+                </button>
+                <button class="btn btn-primary" id="nextStepBtn">
+                    التالي
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <button class="btn btn-success" id="submitVerificationBtn" style="display: none;">
+                    <span class="btn-text">
+                        <i class="fas fa-paper-plane"></i>
+                        إرسال طلب التحقق
+                    </span>
+                    <span class="btn-loading" style="display: none;">
+                        <i class="fas fa-spinner fa-spin"></i>
+                        جاري الإرسال...
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Profile Picture Upload Modal -->
+    <div class="modal" id="profilePictureModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-camera"></i> تحديث الصورة الشخصية</h3>
+                <button class="close-modal" onclick="closeProfilePictureModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="upload-section">
+                    <div class="upload-area" id="profilePictureUploadArea">
+                        <input type="file" id="profilePictureUpload" accept="image/jpeg,image/jpg,image/png" style="display: none;">
+                        <div class="upload-content">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <h5>اضغط لتحميل صورة شخصية جديدة</h5>
+                            <p>JPG, PNG - الحد الأقصى 5 ميجابايت</p>
+                            <div class="upload-preview" id="uploadPreview" style="display: none;">
+                                <img id="previewImage" src="" alt="Preview">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="upload-options">
+                        <button class="btn btn-secondary" onclick="document.getElementById('profilePictureUpload').click()">
+                            <i class="fas fa-folder-open"></i> اختيار ملف
+                        </button>
+                        <button class="btn btn-primary" id="cropButton" style="display: none;">
+                            <i class="fas fa-crop"></i> اقتصاص الصورة
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeProfilePictureModal()">إلغاء</button>
+                <button class="btn btn-primary" id="saveProfilePicture" onclick="saveProfilePicture()" style="display: none;">
+                    <i class="fas fa-save"></i> حفظ الصورة
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- User Type Selector -->
+            <div class="user-type-selector fade-in">
+                <div class="floating-particles"></div>
+                <div class="selector-content">
+                    <h3>اختر نوع المستخدم</h3>
+                    <div class="user-type-buttons">
+                        <button class="user-type-btn active" data-type="freelancer" id="freelancerBtn">
+                            <i class="fas fa-user-tie"></i>
+                            <span>مستقل</span>
+                            <small>عرض جميع الميزات</small>
+                        </button>
+                        <button class="user-type-btn" data-type="client" id="clientBtn">
+                            <i class="fas fa-user-check"></i>
+                            <span>عميل</span>
+                            <small>المنشورات والتقييمات فقط</small>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Enhanced Profile Header -->
+            <div class="profile-header fade-in">
+                <div class="profile-cover">
+                    <div class="profile-avatar" onclick="openProfilePictureModal()">
+                        <img id="profileAvatar" src="Images/default-avatar.png" alt="Profile Avatar">
+                        <div class="avatar-overlay">
+                            <i class="fas fa-camera"></i>
+                            <span>تغيير الصورة</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="profile-info">
+                    <div class="profile-main-info">
+                        <h1 class="profile-name" id="profileName">أحمد محمد سعيد</h1>
+                        <div class="user-type-badge" id="userTypeBadge">
+                            <i class="fas fa-user-tie"></i>
+                            <span>مستقل</span>
+                        </div>
+                        <div class="profile-rating">
+                            <div class="stars" id="profileStars">
+                                <i class="fas fa-star" data-rating="1"></i>
+                                <i class="fas fa-star" data-rating="2"></i>
+                                <i class="fas fa-star" data-rating="3"></i>
+                                <i class="fas fa-star" data-rating="4"></i>
+                                <i class="far fa-star" data-rating="5"></i>
+                            </div>
+                            <span class="rating-text">4.2 (47 تقييم)</span>
+                        </div>
+                        <div class="verification-status">
+                            <div class="verification-badge">
+                                <i class="fas fa-check-circle"></i>
+                                <span>موثق</span>
+                            </div>
+                            <button class="verification-upgrade-btn" onclick="showVerificationModal()">
+                                <i class="fas fa-shield-alt"></i>
+                                ترقية التحقق
+                            </button>
+                        </div>
+                    </div>
+                    <div class="profile-actions">
+                        <button class="btn btn-primary edit-profile-btn" id="editProfileBtn" onclick="showEditProfileModal()">
+                            <span class="btn-text">
+                                <i class="fas fa-edit"></i>
+                                تعديل الملف الشخصي
+                            </span>
+                            <span class="btn-loading" style="display: none;">
+                                <i class="fas fa-spinner fa-spin"></i>
+                                جاري التحديث...
+                            </span>
+                        </button>
+                        <button class="btn btn-secondary share-profile-btn" onclick="showShareModal()">
+                            <i class="fas fa-share"></i>
+                            مشاركة
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Enhanced Profile Edit Modal -->
+            <div class="modal" id="editProfileModal">
+                <div class="modal-content large-modal">
+                    <div class="modal-header">
+                        <h3><i class="fas fa-edit"></i> تعديل الملف الشخصي</h3>
+                        <button class="close-modal" onclick="closeEditProfileModal()">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="edit-profile-form">
+                            <div class="form-section">
+                                <h4><i class="fas fa-user"></i> تعديل الملف الشخصي</h4>
+                                
+                                <div class="form-group">
+                                    <label for="profileName">الاسم الكامل</label>
+                                    <input type="text" id="profileName" value="أحمد محمد سعيد" required>
+                                    <small class="form-help">يجب أن يكون الاسم باللغة العربية أو الإنجليزية</small>
+                                </div>
+                            </div>
+                            
+                            <div class="form-section">
+                                <h4><i class="fas fa-briefcase"></i> المسمى الوظيفي</h4>
+                                
+                                <div class="form-group">
+                                    <label for="profileTitle">المسمى الوظيفي</label>
+                                    <input type="text" id="profileTitle" value="مطور ويب ومطور تطبيقات جوال" placeholder="مثال: مطور ويب، مصمم جرافيك">
+                                    <small class="form-help">اكتب مسماك الوظيفي أو تخصصك</small>
+                                </div>
+                            </div>
+                            
+                            <div class="form-section">
+                                <h4><i class="fas fa-info-circle"></i> معلومات إضافية</h4>
+                                
+                                <div class="form-group">
+                                    <label for="profileLocation">الموقع</label>
+                                    <select id="profileLocation">
+                                        <option value="riyadh" selected>الرياض</option>
+                                        <option value="jeddah">جدة</option>
+                                        <option value="dammam">الدمام</option>
+                                        <option value="mecca">مكة المكرمة</option>
+                                        <option value="medina">المدينة المنورة</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="profileExperience">سنوات الخبرة</label>
+                                    <select id="profileExperience">
+                                        <option value="0-1">أقل من سنة</option>
+                                        <option value="1-3">1-3 سنوات</option>
+                                        <option value="3-5" selected>3-5 سنوات</option>
+                                        <option value="5-10">5-10 سنوات</option>
+                                        <option value="10+">أكثر من 10 سنوات</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="profileBio">نبذة شخصية</label>
+                                    <textarea id="profileBio" rows="4" placeholder="اكتب نبذة مختصرة عن نفسك وخبراتك">مطور ويب متخصص في تطوير التطبيقات الحديثة باستخدام أحدث التقنيات. أعمل على تطوير حلول مبتكرة وفعالة للشركات والأفراد.</textarea>
+                                    <small class="form-help">اكتب نبذة مختصرة عن خبراتك ومهاراتك (حد أقصى 500 حرف)</small>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="profileHourlyRate">السعر بالساعة (ريال سعودي)</label>
+                                    <input type="number" id="profileHourlyRate" value="150" min="10" max="1000" step="5">
+                                    <small class="form-help">حدد سعرك بالساعة (10-1000 ريال)</small>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="profileWebsite">الموقع الشخصي</label>
+                                    <input type="url" id="profileWebsite" value="https://ahmed-portfolio.com" placeholder="https://example.com">
+                                    <small class="form-help">رابط موقعك الشخصي أو معرض أعمالك (اختياري)</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" onclick="closeEditProfileModal()">إلغاء</button>
+                        <button class="btn btn-primary" onclick="saveProfileChanges()">
+                            <span class="btn-text">
+                                <i class="fas fa-save"></i>
+                                حفظ التغييرات
+                            </span>
+                            <span class="btn-loading" style="display: none;">
+                                <i class="fas fa-spinner fa-spin"></i>
+                                جاري الحفظ...
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Enhanced Profile Content -->
+            <div class="profile-content">
+                <div class="profile-sidebar">
+                    <!-- Enhanced Contact Information -->
+                    <div class="profile-card fade-in contact-section">
+                        <div class="card-header">
+                            <h3><i class="fas fa-address-card"></i> معلومات التواصل</h3>
+                            <div class="header-actions">
+                                <button class="edit-btn" onclick="toggleEdit('contact')" title="تعديل معلومات التواصل">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="add-btn" onclick="addContactMethod()" title="إضافة طريقة تواصل جديدة" style="display: none;" id="addContactBtn">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <div class="contact-grid" id="contactGrid">
+                                <!-- Primary Contact Methods -->
+                                <div class="contact-item primary-contact" data-type="phone">
+                                    <div class="contact-icon">
+                                        <i class="fas fa-phone"></i>
+                                    </div>
+                                    <div class="contact-details">
+                                        <span class="contact-label">الهاتف الأساسي</span>
+                                        <span class="contact-text" id="phoneDisplay">01012345678</span>
+                                        <input type="tel" class="contact-input" id="phoneInput" value="01012345678" style="display: none;" placeholder="رقم الهاتف">
+                                        <div class="contact-actions" style="display: none;">
+                                            <button class="action-btn call-btn" onclick="makeCall('01012345678')" title="اتصال">
+                                                <i class="fas fa-phone"></i>
+                                            </button>
+                                            <button class="action-btn copy-btn" onclick="copyToClipboard('01012345678')" title="نسخ">
+                                                <i class="fas fa-copy"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="contact-item primary-contact" data-type="email">
+                                    <div class="contact-icon">
+                                        <i class="fas fa-envelope"></i>
+                                    </div>
+                                    <div class="contact-details">
+                                        <span class="contact-label">البريد الإلكتروني</span>
+                                        <span class="contact-text" id="emailDisplay">ahmed.saeed@techpro.com</span>
+                                        <input type="email" class="contact-input" id="emailInput" value="ahmed.saeed@techpro.com" style="display: none;" placeholder="البريد الإلكتروني">
+                                        <div class="contact-actions" style="display: none;">
+                                            <button class="action-btn email-btn" onclick="sendEmail('ahmed.saeed@techpro.com')" title="إرسال بريد">
+                                                <i class="fas fa-envelope"></i>
+                                            </button>
+                                            <button class="action-btn copy-btn" onclick="copyToClipboard('ahmed.saeed@techpro.com')" title="نسخ">
+                                                <i class="fas fa-copy"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Secondary Contact Methods -->
+                                <div class="contact-item secondary-contact" data-type="whatsapp">
+                                    <div class="contact-icon">
+                                        <i class="fab fa-whatsapp"></i>
+                                    </div>
+                                    <div class="contact-details">
+                                        <span class="contact-label">واتساب</span>
+                                        <span class="contact-text" id="whatsappDisplay">01012345678</span>
+                                        <input type="tel" class="contact-input" id="whatsappInput" value="01012345678" style="display: none;" placeholder="رقم واتساب">
+                                        <div class="contact-actions" style="display: none;">
+                                            <button class="action-btn whatsapp-btn" onclick="openWhatsApp('01012345678')" title="فتح واتساب">
+                                                <i class="fab fa-whatsapp"></i>
+                                            </button>
+                                            <button class="action-btn copy-btn" onclick="copyToClipboard('01012345678')" title="نسخ">
+                                                <i class="fas fa-copy"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="contact-item secondary-contact" data-type="telegram">
+                                    <div class="contact-icon">
+                                        <i class="fab fa-telegram"></i>
+                                    </div>
+                                    <div class="contact-details">
+                                        <span class="contact-label">تليجرام</span>
+                                        <span class="contact-text" id="telegramDisplay">@ahmed_saeed_dev</span>
+                                        <input type="text" class="contact-input" id="telegramInput" value="@ahmed_saeed_dev" style="display: none;" placeholder="معرف تليجرام">
+                                        <div class="contact-actions" style="display: none;">
+                                            <button class="action-btn telegram-btn" onclick="openTelegram('@ahmed_saeed_dev')" title="فتح تليجرام">
+                                                <i class="fab fa-telegram"></i>
+                                            </button>
+                                            <button class="action-btn copy-btn" onclick="copyToClipboard('@ahmed_saeed_dev')" title="نسخ">
+                                                <i class="fas fa-copy"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Professional Networks -->
+                                <div class="contact-item professional-contact" data-type="linkedin">
+                                    <div class="contact-icon">
+                                        <i class="fab fa-linkedin"></i>
+                                    </div>
+                                    <div class="contact-details">
+                                        <span class="contact-label">لينكد إن</span>
+                                        <span class="contact-text" id="linkedinDisplay">linkedin.com/in/ahmed-saeed</span>
+                                        <input type="url" class="contact-input" id="linkedinInput" value="linkedin.com/in/ahmed-saeed" style="display: none;" placeholder="رابط لينكد إن">
+                                        <div class="contact-actions" style="display: none;">
+                                            <button class="action-btn linkedin-btn" onclick="openLinkedIn('linkedin.com/in/ahmed-saeed')" title="فتح لينكد إن">
+                                                <i class="fab fa-linkedin"></i>
+                                            </button>
+                                            <button class="action-btn copy-btn" onclick="copyToClipboard('linkedin.com/in/ahmed-saeed')" title="نسخ">
+                                                <i class="fas fa-copy"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="contact-item professional-contact" data-type="github">
+                                    <div class="contact-icon">
+                                        <i class="fab fa-github"></i>
+                                    </div>
+                                    <div class="contact-details">
+                                        <span class="contact-label">جيت هاب</span>
+                                        <span class="contact-text" id="githubDisplay">github.com/ahmed-saeed</span>
+                                        <input type="url" class="contact-input" id="githubInput" value="github.com/ahmed-saeed" style="display: none;" placeholder="رابط جيت هاب">
+                                        <div class="contact-actions" style="display: none;">
+                                            <button class="action-btn github-btn" onclick="openGitHub('github.com/ahmed-saeed')" title="فتح جيت هاب">
+                                                <i class="fab fa-github"></i>
+                                            </button>
+                                            <button class="action-btn copy-btn" onclick="copyToClipboard('github.com/ahmed-saeed')" title="نسخ">
+                                                <i class="fas fa-copy"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Additional Contact Methods -->
+                                <div class="contact-item additional-contact" data-type="website">
+                                    <div class="contact-icon">
+                                        <i class="fas fa-globe"></i>
+                                    </div>
+                                    <div class="contact-details">
+                                        <span class="contact-label">الموقع الشخصي</span>
+                                        <span class="contact-text" id="websiteDisplay">ahmed-saeed.dev</span>
+                                        <input type="url" class="contact-input" id="websiteInput" value="ahmed-saeed.dev" style="display: none;" placeholder="رابط الموقع الشخصي">
+                                        <div class="contact-actions" style="display: none;">
+                                            <button class="action-btn website-btn" onclick="openWebsite('ahmed-saeed.dev')" title="فتح الموقع">
+                                                <i class="fas fa-external-link-alt"></i>
+                                            </button>
+                                            <button class="action-btn copy-btn" onclick="copyToClipboard('ahmed-saeed.dev')" title="نسخ">
+                                                <i class="fas fa-copy"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="contact-item additional-contact" data-type="discord">
+                                    <div class="contact-icon">
+                                        <i class="fab fa-discord"></i>
+                                    </div>
+                                    <div class="contact-details">
+                                        <span class="contact-label">ديسكورد</span>
+                                        <span class="contact-text" id="discordDisplay">ahmed_dev#1234</span>
+                                        <input type="text" class="contact-input" id="discordInput" value="ahmed_dev#1234" style="display: none;" placeholder="معرف ديسكورد">
+                                        <div class="contact-actions" style="display: none;">
+                                            <button class="action-btn discord-btn" onclick="openDiscord('ahmed_dev#1234')" title="فتح ديسكورد">
+                                                <i class="fab fa-discord"></i>
+                                            </button>
+                                            <button class="action-btn copy-btn" onclick="copyToClipboard('ahmed_dev#1234')" title="نسخ">
+                                                <i class="fas fa-copy"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Statistics Section -->
+                    <div class="profile-card fade-in stats-section" data-user-type="freelancer">
+                        <div class="card-header">
+                            <h3><i class="fas fa-chart-bar"></i> الإحصائيات</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="stats-grid">
+                                <div class="stat-item">
+                                    <div class="stat-icon">
+                                        <i class="fas fa-briefcase"></i>
+                                    </div>
+                                    <div class="stat-info">
+                                        <span class="stat-number">50+</span>
+                                        <span class="stat-label">مشروع مكتمل</span>
+                                    </div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-icon">
+                                        <i class="fas fa-clock"></i>
+                                    </div>
+                                    <div class="stat-info">
+                                        <span class="stat-number">2000+</span>
+                                        <span class="stat-label">ساعة عمل</span>
+                                    </div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-icon">
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                    <div class="stat-info">
+                                        <span class="stat-number">4.8</span>
+                                        <span class="stat-label">تقييم متوسط</span>
+                                    </div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-icon">
+                                        <i class="fas fa-code"></i>
+                                    </div>
+                                    <div class="stat-info">
+                                        <span class="stat-number">15+</span>
+                                        <span class="stat-label">تقنية متقنة</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Skills Section -->
+                    <div class="profile-card fade-in skills-section" data-user-type="freelancer">
+                        <div class="card-header">
+                            <h3><i class="fas fa-star"></i> التخصصات الرئيسية</h3>
+                            <button class="edit-btn" onclick="toggleSkillsEdit()">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                        </div>
+                        <div class="card-content">
+                            <div class="skills-grid">
+                                <div class="skill-category">
+                                    <div class="skill-category-header">
+                                        <i class="fab fa-react"></i>
+                                        <h4>Frontend Development</h4>
+                                    </div>
+                                    <div class="skill-items">
+                                        <span class="skill-item">React.js</span>
+                                        <span class="skill-item">Vue.js</span>
+                                        <span class="skill-item">Angular</span>
+                                        <span class="skill-item">TypeScript</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="skill-category">
+                                    <div class="skill-category-header">
+                                        <i class="fas fa-server"></i>
+                                        <h4>Backend Development</h4>
+                                    </div>
+                                    <div class="skill-items">
+                                        <span class="skill-item">Node.js</span>
+                                        <span class="skill-item">Laravel</span>
+                                        <span class="skill-item">Django</span>
+                                        <span class="skill-item">Express.js</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="skill-category">
+                                    <div class="skill-category-header">
+                                        <i class="fas fa-mobile-alt"></i>
+                                        <h4>Mobile Development</h4>
+                                    </div>
+                                    <div class="skill-items">
+                                        <span class="skill-item">React Native</span>
+                                        <span class="skill-item">Flutter</span>
+                                        <span class="skill-item">Ionic</span>
+                                        <span class="skill-item">Xamarin</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="skill-category">
+                                    <div class="skill-category-header">
+                                        <i class="fas fa-database"></i>
+                                        <h4>Database & Tools</h4>
+                                    </div>
+                                    <div class="skill-items">
+                                        <span class="skill-item">MongoDB</span>
+                                        <span class="skill-item">MySQL</span>
+                                        <span class="skill-item">PostgreSQL</span>
+                                        <span class="skill-item">Redis</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Skills Edit Form -->
+                        <div class="skills-edit-form" id="skillsEditForm" style="display: none;">
+                            <div class="edit-form-header">
+                                <h4><i class="fas fa-edit"></i> تحرير التخصصات</h4>
+                                <div class="form-actions">
+                                    <button class="save-btn" onclick="saveSkills()">
+                                        <i class="fas fa-save"></i> حفظ
+                                    </button>
+                                    <button class="cancel-btn" onclick="cancelSkillsEdit()">
+                                        <i class="fas fa-times"></i> إلغاء
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="skills-edit-grid">
+                                <div class="skill-category-edit">
+                                    <div class="category-header-edit">
+                                        <label for="frontend-icon">أيقونة:</label>
+                                        <select id="frontend-icon" class="icon-select">
+                                            <option value="fab fa-react">React</option>
+                                            <option value="fab fa-html5">HTML5</option>
+                                            <option value="fab fa-js-square">JavaScript</option>
+                                            <option value="fas fa-code">Code</option>
+                                        </select>
+                                        <label for="frontend-title">العنوان:</label>
+                                        <input type="text" id="frontend-title" value="Frontend Development" class="category-title-input">
+                                    </div>
+                                    <div class="skills-input-container">
+                                        <label>المهارات:</label>
+                                        <div class="skills-input-area">
+                                            <input type="text" class="skill-input" placeholder="أضف مهارة جديدة" onkeypress="addSkillOnEnter(event, 'frontend')">
+                                            <div class="skills-tags-edit" id="frontend-skills">
+                                                <span class="skill-tag-edit">React.js <button onclick="removeSkill(this)">×</button></span>
+                                                <span class="skill-tag-edit">Vue.js <button onclick="removeSkill(this)">×</button></span>
+                                                <span class="skill-tag-edit">Angular <button onclick="removeSkill(this)">×</button></span>
+                                                <span class="skill-tag-edit">TypeScript <button onclick="removeSkill(this)">×</button></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="skill-category-edit">
+                                    <div class="category-header-edit">
+                                        <label for="backend-icon">أيقونة:</label>
+                                        <select id="backend-icon" class="icon-select">
+                                            <option value="fas fa-server">Server</option>
+                                            <option value="fab fa-node-js">Node.js</option>
+                                            <option value="fab fa-python">Python</option>
+                                            <option value="fas fa-database">Database</option>
+                                        </select>
+                                        <label for="backend-title">العنوان:</label>
+                                        <input type="text" id="backend-title" value="Backend Development" class="category-title-input">
+                                    </div>
+                                    <div class="skills-input-container">
+                                        <label>المهارات:</label>
+                                        <div class="skills-input-area">
+                                            <input type="text" class="skill-input" placeholder="أضف مهارة جديدة" onkeypress="addSkillOnEnter(event, 'backend')">
+                                            <div class="skills-tags-edit" id="backend-skills">
+                                                <span class="skill-tag-edit">Node.js <button onclick="removeSkill(this)">×</button></span>
+                                                <span class="skill-tag-edit">Laravel <button onclick="removeSkill(this)">×</button></span>
+                                                <span class="skill-tag-edit">Django <button onclick="removeSkill(this)">×</button></span>
+                                                <span class="skill-tag-edit">Express.js <button onclick="removeSkill(this)">×</button></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="skill-category-edit">
+                                    <div class="category-header-edit">
+                                        <label for="mobile-icon">أيقونة:</label>
+                                        <select id="mobile-icon" class="icon-select">
+                                            <option value="fas fa-mobile-alt">Mobile</option>
+                                            <option value="fab fa-android">Android</option>
+                                            <option value="fab fa-apple">iOS</option>
+                                            <option value="fas fa-tablet-alt">Tablet</option>
+                                        </select>
+                                        <label for="mobile-title">العنوان:</label>
+                                        <input type="text" id="mobile-title" value="Mobile Development" class="category-title-input">
+                                    </div>
+                                    <div class="skills-input-container">
+                                        <label>المهارات:</label>
+                                        <div class="skills-input-area">
+                                            <input type="text" class="skill-input" placeholder="أضف مهارة جديدة" onkeypress="addSkillOnEnter(event, 'mobile')">
+                                            <div class="skills-tags-edit" id="mobile-skills">
+                                                <span class="skill-tag-edit">React Native <button onclick="removeSkill(this)">×</button></span>
+                                                <span class="skill-tag-edit">Flutter <button onclick="removeSkill(this)">×</button></span>
+                                                <span class="skill-tag-edit">Ionic <button onclick="removeSkill(this)">×</button></span>
+                                                <span class="skill-tag-edit">Xamarin <button onclick="removeSkill(this)">×</button></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="skill-category-edit">
+                                    <div class="category-header-edit">
+                                        <label for="database-icon">أيقونة:</label>
+                                        <select id="database-icon" class="icon-select">
+                                            <option value="fas fa-database">Database</option>
+                                            <option value="fas fa-server">Server</option>
+                                            <option value="fas fa-hdd">Storage</option>
+                                            <option value="fas fa-cloud">Cloud</option>
+                                        </select>
+                                        <label for="database-title">العنوان:</label>
+                                        <input type="text" id="database-title" value="Database & Tools" class="category-title-input">
+                                    </div>
+                                    <div class="skills-input-container">
+                                        <label>المهارات:</label>
+                                        <div class="skills-input-area">
+                                            <input type="text" class="skill-input" placeholder="أضف مهارة جديدة" onkeypress="addSkillOnEnter(event, 'database')">
+                                            <div class="skills-tags-edit" id="database-skills">
+                                                <span class="skill-tag-edit">MongoDB <button onclick="removeSkill(this)">×</button></span>
+                                                <span class="skill-tag-edit">MySQL <button onclick="removeSkill(this)">×</button></span>
+                                                <span class="skill-tag-edit">PostgreSQL <button onclick="removeSkill(this)">×</button></span>
+                                                <span class="skill-tag-edit">Redis <button onclick="removeSkill(this)">×</button></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="add-category-section">
+                                <button class="add-category-btn" onclick="addNewCategory()">
+                                    <i class="fas fa-plus"></i> إضافة فئة جديدة
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="profile-main">
+                    <!-- About Section -->
+                    <div class="profile-card fade-in about-section" data-user-type="freelancer">
+                        <div class="card-header">
+                            <h3><i class="fas fa-user"></i> نبذة شخصية</h3>
+                            <button class="edit-btn" onclick="toggleAboutEdit()">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                        </div>
+                        <div class="card-content">
+                            <div class="about-content">
+                                <div class="about-intro">
+                                    <div class="intro-highlight">
+                                        <i class="fas fa-quote-left"></i>
+                                        <p class="intro-text" id="aboutText">مطور ويب متخصص في تطوير التطبيقات الحديثة باستخدام أحدث التقنيات. أعمل على تطوير حلول مبتكرة وفعالة للشركات والأفراد. لدي خبرة 5 سنوات في مجال تطوير الويب وتطبيقات الجوال.</p>
+                                        <i class="fas fa-quote-right"></i>
+                                    </div>
+                                </div>
+                                <div class="about-details">
+                                    <div class="detail-section">
+                                        <div class="detail-icon">
+                                            <i class="fas fa-graduation-cap"></i>
+                                        </div>
+                                        <div class="detail-content">
+                                            <h4>التعليم والخبرة</h4>
+                                            <p>حاصل على بكالوريوس في علوم الحاسب من جامعة القاهرة، مع خبرة 5 سنوات في تطوير تطبيقات الويب والجوال. عملت مع شركات محلية ودولية في تطوير حلول تقنية متقدمة.</p>
+                                        </div>
+                                    </div>
+                                    <div class="detail-section">
+                                        <div class="detail-icon">
+                                            <i class="fas fa-tools"></i>
+                                        </div>
+                                        <div class="detail-content">
+                                            <h4>التقنيات والأدوات</h4>
+                                            <p>متخصص في React.js, Node.js, MongoDB, و TypeScript. أعمل أيضاً مع Flutter لتطوير تطبيقات الجوال. أستخدم أحدث الأدوات والتقنيات لضمان جودة عالية وأداء ممتاز.</p>
+                                        </div>
+                                    </div>
+                                    <div class="detail-section">
+                                        <div class="detail-icon">
+                                            <i class="fas fa-rocket"></i>
+                                        </div>
+                                        <div class="detail-content">
+                                            <h4>النهج في العمل</h4>
+                                            <p>أؤمن بالعمل الجماعي والتواصل المستمر مع العملاء. أحرص على تقديم حلول مبتكرة ومستدامة تلبي احتياجات العملاء وتتجاوز توقعاتهم.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Portfolio Section -->
+                    <div class="profile-card fade-in" data-user-type="freelancer">
+                        <div class="card-header">
+                            <h3><i class="fas fa-briefcase"></i> الأعمال السابقة</h3>
+                            <button class="add-btn" onclick="showAddPortfolioForm()">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                        <div class="card-content">
+                            <div class="portfolio-grid" id="portfolioGrid">
+                                <div class="portfolio-item">
+                                    <div class="portfolio-image">
+                                        <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjNGIwMDgyIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNiIgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj7Yp9mE2YrYqiDYp9mE2YrYqjwvdGV4dD48L3N2Zz4=" alt="Portfolio Item">
+                                        <div class="portfolio-category-badge">
+                                            <i class="fas fa-mobile-alt"></i>
+                                        </div>
+                                    </div>
+                                    <div class="portfolio-content">
+                                        <h4>تطبيق طلبات الطعام</h4>
+                                        <p>تطبيق جوال متكامل لطلبات الطعام مع نظام دفع إلكتروني وتتبع مباشر للطلبات. تم تطويره باستخدام React Native و Node.js.</p>
+                                        <div class="portfolio-tags">
+                                            <span class="tag">React Native</span>
+                                            <span class="tag">Node.js</span>
+                                            <span class="tag">MongoDB</span>
+                                        </div>
+                                        <div class="portfolio-actions">
+                                            <button class="portfolio-action-btn view" onclick="viewPortfolioItem(0)">
+                                                <i class="fas fa-eye"></i>
+                                                عرض
+                                            </button>
+                                            <button class="portfolio-action-btn edit" onclick="editPortfolioItem(0)">
+                                                <i class="fas fa-edit"></i>
+                                                تعديل
+                                            </button>
+                                            <button class="portfolio-action-btn delete" onclick="deletePortfolioItem(0)">
+                                                <i class="fas fa-trash"></i>
+                                                حذف
+                                            </button>
+                                        </div>
+                                        <div class="portfolio-stats">
+                                            <div class="stat-item">
+                                                <i class="fas fa-eye"></i>
+                                                <span>1.2K</span>
+                                            </div>
+                                            <div class="stat-item">
+                                                <i class="fas fa-heart"></i>
+                                                <span>89</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="portfolio-item">
+                                    <div class="portfolio-image">
+                                        <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjNGIwMDgyIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNiIgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj7Yp9mE2YrYqiDYp9mE2YrYqjwvdGV4dD48L3N2Zz4=" alt="Portfolio Item">
+                                        <div class="portfolio-category-badge">
+                                            <i class="fas fa-globe"></i>
+                                        </div>
+                                    </div>
+                                    <div class="portfolio-content">
+                                        <h4>موقع تجارة إلكترونية</h4>
+                                        <p>موقع تجارة إلكترونية متكامل مع نظام إدارة محتوى متقدم. يتضمن نظام دفع آمن وإدارة مخزون ذكية.</p>
+                                        <div class="portfolio-tags">
+                                            <span class="tag">React.js</span>
+                                            <span class="tag">Laravel</span>
+                                            <span class="tag">MySQL</span>
+                                        </div>
+                                        <div class="portfolio-actions">
+                                            <button class="portfolio-action-btn view" onclick="viewPortfolioItem(1)">
+                                                <i class="fas fa-eye"></i>
+                                                عرض
+                                            </button>
+                                            <button class="portfolio-action-btn edit" onclick="editPortfolioItem(1)">
+                                                <i class="fas fa-edit"></i>
+                                                تعديل
+                                            </button>
+                                            <button class="portfolio-action-btn delete" onclick="deletePortfolioItem(1)">
+                                                <i class="fas fa-trash"></i>
+                                                حذف
+                                            </button>
+                                        </div>
+                                        <div class="portfolio-stats">
+                                            <div class="stat-item">
+                                                <i class="fas fa-eye"></i>
+                                                <span>856</span>
+                                            </div>
+                                            <div class="stat-item">
+                                                <i class="fas fa-heart"></i>
+                                                <span>67</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Reviews Section -->
+                    <div class="profile-card fade-in">
+                        <div class="card-header">
+                            <h3><i class="fas fa-star"></i> التقييمات والمراجعات</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="reviews-list">
+                                <div class="review-item">
+                                    <div class="review-header">
+                                        <div class="reviewer-info">
+                                            <div class="reviewer-avatar">
+                                                <i class="fas fa-user"></i>
+                                            </div>
+                                            <div class="reviewer-details">
+                                                <h5>محمد علي حسن</h5>
+                                                <div class="review-stars">
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="far fa-star"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <span class="review-date">منذ أسبوع</span>
+                                    </div>
+                                    <p class="review-text">مطور محترف ومتجاوب. ساعدني في تطوير تطبيق جوال متقدم وكان العمل سلس وممتع. الكود نظيف ومنظم وسهل الصيانة. أنصح بالتعامل معه.</p>
+                                </div>
+                                <div class="review-item">
+                                    <div class="review-header">
+                                        <div class="reviewer-info">
+                                            <div class="reviewer-avatar">
+                                                <i class="fas fa-user"></i>
+                                            </div>
+                                            <div class="reviewer-details">
+                                                <h5>فاطمة محمود</h5>
+                                                <div class="review-stars">
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <span class="review-date">منذ أسبوعين</span>
+                                    </div>
+                                    <p class="review-text">تجربة رائعة في العمل مع أحمد. طور لي موقع تجارة إلكترونية متكامل وكان النتيجة ممتازة. الموقع سريع وسهل الاستخدام والتصميم جميل. شكراً لك.</p>
+                                </div>
+                                <div class="review-item">
+                                    <div class="review-header">
+                                        <div class="reviewer-info">
+                                            <div class="reviewer-avatar">
+                                                <i class="fas fa-user"></i>
+                                            </div>
+                                            <div class="reviewer-details">
+                                                <h5>علي أحمد</h5>
+                                                <div class="review-stars">
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="far fa-star"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <span class="review-date">منذ شهر</span>
+                                    </div>
+                                    <p class="review-text">عمل احترافي ومتقن. ساعدني في تطوير نظام إدارة محتوى متقدم وكان العمل ممتاز. التواصل كان مستمر والفكرة نفذت بالضبط كما طلبت.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Enhanced Posts Section -->
+                    <div class="profile-card fade-in">
+                        <div class="card-header">
+                            <h3><i class="fas fa-newspaper"></i> المنشورات الشخصية</h3>
+                            <button class="add-btn" onclick="showCreatePostModal()">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                        <div class="card-content">
+                            <div class="posts-list" id="postsList">
+                                <div class="post-item">
+                                    <div class="post-header">
+                                        <div class="post-user-info">
+                                            <div class="post-avatar">
+                                                <i class="fas fa-user"></i>
+                                            </div>
+                                            <div class="post-details">
+                                                <h5>أحمد محمد سعيد</h5>
+                                                <span class="post-time">منذ ساعتين</span>
+                                            </div>
+                                        </div>
+                                        <div class="post-privacy">
+                                            <i class="fas fa-globe"></i>
+                                        </div>
+                                    </div>
+                                    <div class="post-content">
+                                        <p>انتهيت للتو من تطوير تطبيق جوال جديد للطلبات والدفع. التطبيق يتضمن ميزات متقدمة مثل التتبع المباشر والمدفوعات الإلكترونية. سعيد جداً بالنتيجة النهائية! 🚀</p>
+                                        <div class="post-image">
+                                            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjNGIwMDgyIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxOCIgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj7Zhtin2YbYqiDYp9mE2YrYqjwvdGV4dD48L3N2Zz4=" alt="Post Image" loading="lazy">
+                                        </div>
+                                    </div>
+                                    <div class="post-actions">
+                                        <button class="action-btn" onclick="toggleLike(this)">
+                                            <i class="far fa-heart"></i>
+                                            <span>12</span>
+                                        </button>
+                                        <button class="action-btn" onclick="toggleComments(this)">
+                                            <i class="far fa-comment"></i>
+                                            <span>5</span>
+                                        </button>
+                                        <button class="action-btn" onclick="sharePost(this)">
+                                            <i class="fas fa-share"></i>
+                                        </button>
+                                    </div>
+                                    <div class="comments-section" style="display: none;">
+                                        <div class="comment-item">
+                                            <div class="comment-avatar">
+                                                <i class="fas fa-user"></i>
+                                            </div>
+                                            <div class="comment-content">
+                                                <h6>سارة أحمد</h6>
+                                                <p>عمل رائع! التطبيق يبدو ممتاز 👏</p>
+                                            </div>
+                                        </div>
+                                        <div class="comment-item">
+                                            <div class="comment-avatar">
+                                                <i class="fas fa-user"></i>
+                                            </div>
+                                            <div class="comment-content">
+                                                <h6>محمد علي</h6>
+                                                <p>أحتاج لمثل هذا التطبيق لمشروعي</p>
+                                            </div>
+                                        </div>
+                                        <div class="comment-input">
+                                            <input type="text" placeholder="اكتب تعليقك..." onkeypress="handleCommentKeypress(event, this)">
+                                            <button onclick="addComment(this)">
+                                                <i class="fas fa-paper-plane"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="post-item">
+                                    <div class="post-header">
+                                        <div class="post-user-info">
+                                            <div class="post-avatar">
+                                                <i class="fas fa-user"></i>
+                                            </div>
+                                            <div class="post-details">
+                                                <h5>أحمد محمد سعيد</h5>
+                                                <span class="post-time">منذ يوم</span>
+                                            </div>
+                                        </div>
+                                        <div class="post-privacy">
+                                            <i class="fas fa-users"></i>
+                                        </div>
+                                    </div>
+                                    <div class="post-content">
+                                        <p>شاركت في مؤتمر تطوير الويب اليوم وتعلمت الكثير من التقنيات الجديدة. كان من الرائع مقابلة مطورين آخرين وتبادل الخبرات! 💻</p>
+                                    </div>
+                                    <div class="post-actions">
+                                        <button class="action-btn" onclick="toggleLike(this)">
+                                            <i class="fas fa-heart"></i>
+                                            <span>8</span>
+                                        </button>
+                                        <button class="action-btn" onclick="toggleComments(this)">
+                                            <i class="far fa-comment"></i>
+                                            <span>3</span>
+                                        </button>
+                                        <button class="action-btn" onclick="sharePost(this)">
+                                            <i class="fas fa-share"></i>
+                                        </button>
+                                    </div>
+                                    <div class="comments-section" style="display: none;">
+                                        <div class="comment-item">
+                                            <div class="comment-avatar">
+                                                <i class="fas fa-user"></i>
+                                            </div>
+                                            <div class="comment-content">
+                                                <h6>فاطمة محمود</h6>
+                                                <p>أتمنى أن أشارك في المؤتمر القادم!</p>
+                                            </div>
+                                        </div>
+                                        <div class="comment-input">
+                                            <input type="text" placeholder="اكتب تعليقك..." onkeypress="handleCommentKeypress(event, this)">
+                                            <button onclick="addComment(this)">
+                                                <i class="fas fa-paper-plane"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Create Post Modal -->
+    <div class="modal" id="createPostModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-edit"></i> إنشاء منشور جديد</h3>
+                <button class="close-modal" onclick="closeCreatePostModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="post-form">
+                    <div class="form-group">
+                        <label for="postContent">محتوى المنشور</label>
+                        <textarea id="postContent" placeholder="اكتب ما تريد مشاركته..." rows="4"></textarea>
+                        <div class="char-counter">
+                            <span id="charCount">0</span>/500
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="postImage">إضافة صورة (اختياري)</label>
+                        <div class="image-upload-area" id="postImageUpload">
+                            <input type="file" id="postImageInput" accept="image/*" style="display: none;">
+                            <div class="upload-content">
+                                <i class="fas fa-image"></i>
+                                <h5>اضغط لإضافة صورة</h5>
+                                <p>JPG, PNG - الحد الأقصى 5 ميجابايت</p>
+                            </div>
+                        </div>
+                        <div class="image-preview" id="imagePreview" style="display: none;">
+                            <img id="previewImg" src="" alt="Preview">
+                            <button type="button" onclick="removePostImage()" class="remove-image-btn">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="postPrivacy">خصوصية المنشور</label>
+                        <select id="postPrivacy">
+                            <option value="public">
+                                <i class="fas fa-globe"></i> عام
+                            </option>
+                            <option value="friends">
+                                <i class="fas fa-users"></i> الأصدقاء
+                            </option>
+                            <option value="private">
+                                <i class="fas fa-lock"></i> خاص
+                            </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeCreatePostModal()">إلغاء</button>
+                <button class="btn btn-primary" onclick="createPost()">
+                    <span class="btn-text">
+                        <i class="fas fa-paper-plane"></i>
+                        نشر
+                    </span>
+                    <span class="btn-loading" style="display: none;">
+                        <i class="fas fa-spinner fa-spin"></i>
+                        جاري النشر...
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Share Profile Modal -->
+    <div class="modal" id="shareProfileModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-share"></i> مشاركة الملف الشخصي</h3>
+                <button class="close-modal" onclick="closeShareModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="share-options">
+                    <div class="share-option" onclick="shareToWhatsAppProfile()">
+                        <i class="fab fa-whatsapp"></i>
+                        <span>واتساب</span>
+                    </div>
+                    <div class="share-option" onclick="shareToFacebookProfile()">
+                        <i class="fab fa-facebook"></i>
+                        <span>فيسبوك</span>
+                    </div>
+                    <div class="share-option" onclick="shareToTwitterProfile()">
+                        <i class="fab fa-twitter"></i>
+                        <span>تويتر</span>
+                    </div>
+                    <div class="share-option" onclick="shareToLinkedIn()">
+                        <i class="fab fa-linkedin"></i>
+                        <span>لينكد إن</span>
+                    </div>
+                    <div class="share-option" onclick="copyProfileLink()">
+                        <i class="fas fa-link"></i>
+                        <span>نسخ الرابط</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Portfolio View Modal -->
+    <div class="modal" id="portfolioViewModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-eye"></i> عرض المشروع</h3>
+                <button class="close-modal" onclick="closePortfolioModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="portfolio-view-content">
+                    <div class="portfolio-image">
+                        <img id="viewPortfolioImage" src="" alt="Portfolio Image">
+                    </div>
+                    <div class="portfolio-details">
+                        <h4 id="viewPortfolioTitle"></h4>
+                        <p id="viewPortfolioDescription"></p>
+                        <div class="portfolio-tags" id="viewPortfolioTags"></div>
+                        <div class="portfolio-stats">
+                            <span><i class="fas fa-eye"></i> <span id="viewPortfolioViews"></span> مشاهدة</span>
+                            <span><i class="fas fa-heart"></i> <span id="viewPortfolioLikes"></span> إعجاب</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closePortfolioModal()">إغلاق</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Portfolio Edit Modal -->
+    <div class="modal" id="portfolioEditModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-edit"></i> تحرير المشروع</h3>
+                <button class="close-modal" onclick="closeEditModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="portfolio-edit-form">
+                    <div class="form-group">
+                        <label for="editPortfolioTitle">عنوان المشروع</label>
+                        <input type="text" id="editPortfolioTitle" placeholder="أدخل عنوان المشروع">
+                    </div>
+                    <div class="form-group">
+                        <label for="editPortfolioDescription">وصف المشروع</label>
+                        <textarea id="editPortfolioDescription" rows="4" placeholder="أدخل وصف المشروع"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="editPortfolioTags">التقنيات المستخدمة</label>
+                        <input type="text" id="editPortfolioTags" placeholder="React, Node.js, MongoDB (مفصولة بفواصل)">
+                    </div>
+                    <div class="form-group">
+                        <label for="editPortfolioImage">صورة المشروع</label>
+                        <input type="file" id="editPortfolioImage" accept="image/*">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeEditModal()">إلغاء</button>
+                <button class="btn btn-primary" onclick="savePortfolioEdit()">
+                    <i class="fas fa-save"></i> حفظ التغييرات
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Portfolio Delete Modal -->
+    <div class="modal" id="portfolioDeleteModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-trash"></i> حذف المشروع</h3>
+                <button class="close-modal" onclick="closeDeleteModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="delete-confirmation">
+                    <div class="warning-icon">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <h4>هل أنت متأكد من حذف هذا المشروع؟</h4>
+                    <p>لن تتمكن من استرداد هذا المشروع بعد حذفه.</p>
+                    <div class="project-preview">
+                        <h5 id="deletePortfolioTitle"></h5>
+                        <p id="deletePortfolioDescription"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeDeleteModal()">إلغاء</button>
+                <button class="btn btn-danger" onclick="confirmDeletePortfolio()">
+                    <i class="fas fa-trash"></i> حذف المشروع
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="profile.js"></script>
+    
+    <!-- Enhanced Chatbot Integration -->
+    <link rel="stylesheet" href="../chatbot/chatbot.css">
+    <script src="../chatbot/chatbot.js"></script>
+    
+    <!-- Profile-specific Chatbot Enhancements -->
+    <script>
+        // Enhance chatbot for profile page context
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(() => {
+                if (window.chatbotInstance) {
+                    // Add profile-specific suggestions
+                    window.chatbotInstance.addProfileSpecificSuggestions();
+                    
+                    // Override welcome message for profile context
+                    const profileWelcomeMessage = "مرحباً! أنا هنا لمساعدتك في إدارة ملفك الشخصي والتنقل بين صفحات الموقع. يمكنني مساعدتك في تحديث المعلومات أو الانتقال لأي صفحة أخرى.";
+                    window.chatbotInstance.updateWelcomeMessage(profileWelcomeMessage);
+                }
+            }, 1000);
+        });
+        
+        // Add profile-specific chatbot methods
+        if (window.ModernChatbot) {
+            const originalInit = window.ModernChatbot.prototype.init;
+            window.ModernChatbot.prototype.init = function() {
+                originalInit.call(this);
+                this.addProfileSpecificSuggestions();
+            };
+            
+            window.ModernChatbot.prototype.addProfileSpecificSuggestions = function() {
+                // Add profile-specific route translations
+                this.routeTranslations.set('edit-profile', {
+                    arabic: 'تعديل الملف الشخصي',
+                    description: 'تعديل معلوماتك الشخصية والمهارات والخبرات.',
+                    url: '#editProfileModal',
+                    keywords: ['تعديل', 'تحديث', 'معلومات', 'بيانات']
+                });
+                
+                this.routeTranslations.set('verification', {
+                    arabic: 'التحقق من الهوية',
+                    description: 'إكمال عملية التحقق من هويتك للحصول على شارة موثق.',
+                    url: '#verificationModal',
+                    keywords: ['تحقق', 'هوية', 'وثائق', 'موثق']
+                });
+                
+                this.routeTranslations.set('portfolio', {
+                    arabic: 'معرض الأعمال',
+                    description: 'إدارة معرض أعمالك السابقة والمشاريع المنجزة.',
+                    url: '#portfolioSection',
+                    keywords: ['أعمال', 'مشاريع', 'معرض', 'إنجازات']
+                });
+            };
+            
+            // Override navigation handling for profile-specific actions
+            const originalExecuteNavigation = window.ModernChatbot.prototype.executeNavigation;
+            window.ModernChatbot.prototype.executeNavigation = function(navigationData) {
+                // Handle profile-specific navigation
+                if (navigationData.url.startsWith('#')) {
+                    // Handle modal opening
+                    const modalId = navigationData.url.substring(1);
+                    const modal = document.getElementById(modalId);
+                    if (modal) {
+                        modal.style.display = 'flex';
+                        this.addMessage(`تم فتح ${navigationData.arabic} بنجاح!`, 'bot', 'navigation');
+                        return;
+                    }
+                }
+                
+                // Handle section scrolling
+                if (navigationData.url.includes('Section')) {
+                    const sectionId = navigationData.url.substring(1);
+                    const section = document.getElementById(sectionId);
+                    if (section) {
+                        section.scrollIntoView({ behavior: 'smooth' });
+                        this.addMessage(`تم الانتقال إلى ${navigationData.arabic} بنجاح!`, 'bot', 'navigation');
+                        return;
+                    }
+                }
+                
+                // Default navigation behavior
+                originalExecuteNavigation.call(this, navigationData);
+            };
+        }
+    </script>
+    <script src="../../shared/navigation.js"></script>
+</body>
+</html>

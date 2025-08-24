@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>شغلك | إنشاء حساب</title>
+    <link rel="stylesheet" href="onboarding.css">
+    <link rel="stylesheet" href="../../shared/navigation.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <meta name="theme-color" content="#4a6da7">
+</head>
+<body>
+    <!-- Enhanced Dynamic Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="../../Images/تصميم بدون عنوان_20250805_160357_٠٠٠٠ (1).png" alt="شغلك Logo" class="nav-logo" width="50" height="50">
+                <h2><i class="#"></i> </h2>
+            </div>
+            <div class="nav-menu">
+                <a href="../../index.html" class="nav-link"><i class="fas fa-home"></i>الرئيسية</a>
+                <a href="../onboarding/onboarding.html" class="nav-link active"><i class="fas fa-user-plus"></i>الترحيب</a>
+                <a href="../opportunities/opportunities.html" class="nav-link"><i class="fas fa-briefcase"></i>الفرص</a>
+                <a href="../profile/profile.html" class="nav-link"><i class="fas fa-user"></i>الملف الشخصي</a>
+                <a href="../social/social.html" class="nav-link"><i class="fas fa-users"></i>المجتمع</a>
+                <a href="../messages/messages.html" class="nav-link"><i class="fas fa-envelope"></i>الرسائل</a>
+                <a href="../reporting/reporting.html" class="nav-link"><i class="fas fa-flag"></i>الإبلاغ</a>
+                <a href="../projects/project-submission.html" class="nav-link"><i class="fas fa-upload"></i>تقديم المشروع</a>
+            </div>
+            <div class="nav-user">
+                
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="onboarding-container">
+        <div class="onboarding-card">                                                                                                        
+            <div class="logo-section">
+                <img src="../../Images/شغلك_20250805_161848_٠٠٠٠ (1).png" alt=" " class="logo-section" width="50" height="50">
+                
+            </div>
+
+            <div class="form-section">
+                <h2>إنشاء حساب جديد</h2>
+                <p class="form-description">أدخل رقم هاتفك لإنشاء حسابك تلقائياً</p>
+
+                <form id="onboardingForm" class="onboarding-form">
+                    <div class="input-group">
+                        <label for="phoneNumber">رقم الهاتف</label>
+                        <div class="phone-input">
+                            <span class="country-code">+20</span>
+                            <input type="tel" id="phoneNumber" placeholder="10xxxxxxxx" required>
+                        </div>
+                        <small class="input-hint">سيتم إرسال رمز التحقق إلى هذا الرقم</small>
+                    </div>
+
+                    <div class="otp-section" id="otpSection" style="display: none;">
+                        <label for="otpCode">رمز التحقق</label>
+                        <div class="otp-input">
+                            <input type="text" id="otpCode" placeholder="xxxx" maxlength="4">
+                        </div>
+                        <div class="otp-timer">
+                            <span id="timerText">إعادة الإرسال خلال: </span>
+                            <span id="timer">02:00</span>
+                        </div>
+                        <button type="button" id="resendOtp" class="resend-btn" disabled>
+                            إعادة إرسال الرمز
+                        </button>
+                    </div>
+
+                    <button type="submit" id="submitBtn" class="submit-btn">
+                        <span class="btn-text">إرسال رمز التحقق</span>
+                        <span class="btn-loading" style="display: none;">
+                            <i class="fas fa-spinner fa-spin"></i>
+                            جاري الإرسال...
+                        </span>
+                    </button>
+                </form>
+
+                <div class="terms-section">
+                    <p>بإنشاء الحساب، أنت توافق على <a href="#" class="terms-link">الشروط والأحكام</a></p>
+                </div>
+            </div>
+
+            <div class="features-section">
+                <h3>مميزات شغلك</h3>
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <i class="fas fa-shield-alt"></i>
+                        <h4>حساب آمن</h4>
+                        <p>بياناتك محمية ومشفرة</p>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-bolt"></i>
+                        <h4>إنشاء سريع</h4>
+                        <p>حسابك جاهز خلال دقائق</p>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-users"></i>
+                        <h4>مجتمع نشط</h4>
+                        <p>تواصل مع آلاف المحترفين</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="onboarding.js"></script>
+    
+    <!-- Chatbot -->
+    <link rel="stylesheet" href="../chatbot/chatbot.css">
+<script src="../chatbot/chatbot.js"></script>
+
+    <!-- Theme Toggle Button -->
+    
+
+    <script>
+        // Theme Toggle Functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        const themeIcon = themeToggle.querySelector('i');
+        const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+
+        // Check for saved theme preference
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            body.classList.add('dark-theme');
+            themeIcon.classList.remove('fa-moon');
+            themeIcon.classList.add('fa-sun');
+            if (metaThemeColor) metaThemeColor.setAttribute('content', '#1a1a2e');
+        }
+
+        themeToggle.addEventListener('click', () => {
+            // Toggle dark theme class
+            body.classList.toggle('dark-theme');
+            
+            // Update icon
+            if (body.classList.contains('dark-theme')) {
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+                if (metaThemeColor) metaThemeColor.setAttribute('content', '#1a1a2e');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+                if (metaThemeColor) metaThemeColor.setAttribute('content', '#4a6da7');
+                localStorage.setItem('theme', 'light');
+            }
+            
+            // Add animation to theme toggle
+            themeToggle.classList.add('animate-in');
+            setTimeout(() => {
+                themeToggle.classList.remove('animate-in');
+            }, 300);
+        });
+
+        // Form animations
+        document.addEventListener('DOMContentLoaded', function() {
+            const formSection = document.querySelector('.form-section');
+            const featuresSection = document.querySelector('.features-section');
+            
+            if (formSection) formSection.style.opacity = '1';
+            if (featuresSection) featuresSection.style.opacity = '1';
+        });
+    </script>
+    <script src="../../shared/navigation.js"></script>
+</body>
+</html>

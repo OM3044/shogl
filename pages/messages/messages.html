@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مركز الرسائل والإشعارات | شغلك</title>
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../..//styles.css">
+    <link rel="stylesheet" href="social.css">
+    <link rel="stylesheet" href="messages.css">
+    <link rel="stylesheet" href="../../shared/navigation.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Meta tags -->
+    <meta name="theme-color" content="#667eea">
+    <meta name="description" content="مركز الرسائل والإشعارات - تواصل مع المطورين والمصممين وتابع آخر التحديثات والإشعارات">
+    <meta name="keywords" content="رسائل, إشعارات, تواصل, مطورين, مصممين, شغلك">
+    
+    <!-- Icons and manifest -->
+    <link rel="icon" type="image/png" href="Images/تصميم بدون عنوان_20250805_160357_٠٠٠٠ (1).png">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="Images/تصميم بدون عنوان_20250805_160357_٠٠٠٠ (1).png">
+</head>
+<body class="messages-page">
+    <!-- Enhanced Dynamic Navigation -->
+    <nav class="navbar" role="navigation" aria-label="التنقل الرئيسي">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="../..//Images/تصميم بدون عنوان_20250805_160357_٠٠٠٠ (1).png" alt="شغلك Logo" class="nav-logo" width="50" height="50">
+                <h2><i class="#"></i> </h2>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="../..//index.html" class="nav-link"><i class="fas fa-home"></i>الرئيسية</a>
+                <a href="../onboarding/onboarding.html" class="nav-link"><i class="fas fa-user-plus"></i>الترحيب</a>
+                <a href="../opportunities/opportunities.html" class="nav-link"><i class="fas fa-briefcase"></i>الفرص</a>
+                <a href="../profile/profile.html" class="nav-link"><i class="fas fa-user"></i>الملف الشخصي</a>
+                <a href="../social/social.html" class="nav-link"><i class="fas fa-users"></i>المجتمع</a>
+                <a href="../messages/messages.html" class="nav-link active" aria-current="page"><i class="fas fa-envelope"></i>الرسائل</a>
+                <a href="../reporting/reporting.html" class="nav-link"><i class="fas fa-flag"></i>الإبلاغ</a>
+                <a href="../projects/project-submission.html" class="nav-link"><i class="fas fa-upload"></i>تقديم المشروع</a>
+            </div>
+            <div class="nav-user">
+                
+            </div>
+            <div class="hamburger" id="hamburger" aria-label="قائمة التنقل" role="button" tabindex="0">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="header-info">
+                    <h1 class="page-title">
+                        <i class="fas fa-comments"></i>
+                        مركز الرسائل والإشعارات
+                    </h1>
+                    <p class="page-description">تواصل مع المطورين والمصممين، وتابع رسائلك وإشعاراتك</p>
+                </div>
+                <div class="header-stats">
+                    <div class="stat-item">
+                        <span class="stat-number" id="totalMessages">24</span>
+                        <span class="stat-label">رسالة</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" id="unreadMessages">5</span>
+                        <span class="stat-label">غير مقروء</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" id="totalNotifications">18</span>
+                        <span class="stat-label">إشعار</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content" role="main">
+        <div class="container">
+            <!-- Section Tabs -->
+            <div class="section-tabs">
+                <button class="section-tab active" data-section="messages" onclick="switchSection('messages')">
+                    <i class="fas fa-envelope"></i>
+                    <span>الرسائل</span>
+                    <span class="badge" id="messagesBadge">5</span>
+                </button>
+                <button class="section-tab" data-section="notifications" onclick="switchSection('notifications')">
+                    <i class="fas fa-bell"></i>
+                    <span>الإشعارات</span>
+                    <span class="badge" id="notificationsBadge">8</span>
+                </button>
+            </div>
+
+            <!-- Messages Section -->
+            <section id="messages-section" class="content-section active">
+                <div class="section-header">
+                    <div class="section-title">
+                        <h2><i class="fas fa-envelope"></i> الرسائل</h2>
+                        <p>محادثاتك النشطة مع المطورين والمصممين</p>
+                    </div>
+                    <div class="section-actions">
+                        <button class="action-btn" onclick="markAllMessagesAsRead()" title="وضع علامة مقروء على الكل">
+                            <i class="fas fa-check-double"></i>
+                        </button>
+                        <button class="action-btn primary" onclick="composeNewMessage()" title="رسالة جديدة">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="section-content">
+                    <!-- Search Bar -->
+                    <div class="search-container">
+                        <div class="search-input-wrapper">
+                            <i class="fas fa-search"></i>
+                            <input type="text" 
+                                   class="search-input" 
+                                   placeholder="البحث في الرسائل..." 
+                                   id="messagesSearch">
+                            <button class="search-clear" onclick="clearMessagesSearch()" title="مسح البحث">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Filter Tabs -->
+                    <div class="filter-tabs">
+                        <button class="filter-tab active" onclick="filterMessages('all')">
+                            <i class="fas fa-inbox"></i>
+                            الكل
+                            <span class="filter-count" id="allMessagesCount">24</span>
+                        </button>
+                        <button class="filter-tab" onclick="filterMessages('unread')">
+                            <i class="fas fa-envelope"></i>
+                            غير مقروء
+                            <span class="filter-count" id="unreadMessagesCount">5</span>
+                        </button>
+                        <button class="filter-tab" onclick="filterMessages('pinned')">
+                            <i class="fas fa-thumbtack"></i>
+                            مثبت
+                            <span class="filter-count" id="pinnedMessagesCount">2</span>
+                        </button>
+                        <button class="filter-tab" onclick="filterMessages('urgent')">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            عاجل
+                            <span class="filter-count" id="urgentMessagesCount">1</span>
+                        </button>
+                        <button class="filter-tab" onclick="filterMessages('work')">
+                            <i class="fas fa-briefcase"></i>
+                            عمل
+                            <span class="filter-count" id="workMessagesCount">8</span>
+                        </button>
+                        <button class="filter-tab" onclick="filterMessages('online')">
+                            <i class="fas fa-circle"></i>
+                            متصل
+                            <span class="filter-count" id="onlineMessagesCount">12</span>
+                        </button>
+                    </div>
+
+                    <!-- Messages List -->
+                    <div class="messages-list" id="messagesList">
+                        <!-- Messages will be populated here by JavaScript -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Notifications Section -->
+            <section id="notifications-section" class="content-section">
+                <div class="section-header">
+                    <div class="section-title">
+                        <h2><i class="fas fa-bell"></i> الإشعارات</h2>
+                        <p>آخر التحديثات والتفاعلات والمنشورات الجديدة</p>
+                    </div>
+                    <div class="section-actions">
+                        <button class="action-btn" onclick="markAllAsRead()" title="وضع علامة مقروء على الكل">
+                            <i class="fas fa-check-double"></i>
+                        </button>
+                        <button class="action-btn" onclick="clearAllNotifications()" title="حذف جميع الإشعارات">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                        <button class="action-btn" onclick="openNotificationSettings()" title="إعدادات الإشعارات">
+                            <i class="fas fa-cog"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="section-content">
+                    <!-- Search Bar -->
+                    <div class="search-container">
+                        <div class="search-input-wrapper">
+                            <i class="fas fa-search"></i>
+                            <input type="text" 
+                                   class="search-input" 
+                                   placeholder="البحث في الإشعارات..." 
+                                   id="notificationsSearch">
+                            <button class="search-clear" onclick="clearNotificationsSearch()" title="مسح البحث">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Filter Tabs -->
+                    <div class="filter-tabs">
+                        <button class="filter-tab active" onclick="filterNotifications('all')">
+                            <i class="fas fa-bell"></i>
+                            الكل
+                            <span class="filter-count" id="allNotificationsCount">18</span>
+                        </button>
+                        <button class="filter-tab" onclick="filterNotifications('unread')">
+                            <i class="fas fa-envelope-open"></i>
+                            غير مقروء
+                            <span class="filter-count" id="unreadNotificationsCount">8</span>
+                        </button>
+                        <button class="filter-tab" onclick="filterNotifications('interaction')">
+                            <i class="fas fa-heart"></i>
+                            تفاعلات
+                            <span class="filter-count" id="interactionNotificationsCount">6</span>
+                        </button>
+                        <button class="filter-tab" onclick="filterNotifications('post')">
+                            <i class="fas fa-newspaper"></i>
+                            منشورات
+                            <span class="filter-count" id="postNotificationsCount">5</span>
+                        </button>
+                        <button class="filter-tab" onclick="filterNotifications('system')">
+                            <i class="fas fa-cog"></i>
+                            نظام
+                            <span class="filter-count" id="systemNotificationsCount">3</span>
+                        </button>
+                    </div>
+
+                    <!-- Notifications List -->
+                    <div class="notifications-list" id="notificationsList">
+                        <!-- Notifications will be populated here by JavaScript -->
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+
+
+    <!-- Enhanced Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-container">
+            <div class="loading-spinner">
+                <div class="spinner-wrapper">
+                    <div class="spinner-primary"></div>
+                    <div class="spinner-secondary"></div>
+                    <div class="spinner-tertiary"></div>
+                </div>
+                <div class="loading-dots">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+            <div class="loading-content">
+                <h3 class="loading-title">جاري التحميل</h3>
+                <p class="loading-message">يرجى الانتظار بينما نقوم بتحميل المحتوى...</p>
+                <div class="loading-progress">
+                    <div class="progress-bar"></div>
+                </div>
+            </div>
+        </div>
+        <div class="loading-background-animation">
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Scripts -->
+    <script src="../../shared/navigation.js"></script>
+    <script src="script.js"></script>
+    <script src="messages.js"></script>
+    
+    <!-- Chatbot -->
+    <link rel="stylesheet" href="../chatbot/chatbot.css">
+    <script src="../chatbot/chatbot.js"></script>
+</body>
+</html>

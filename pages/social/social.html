@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المجتمع - شغلك</title>
+    <link rel="stylesheet" href="browser-compatibility.css">
+    <link rel="stylesheet" href="social.css">
+    <link rel="stylesheet" href="../../shared/navigation.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Enhanced Dynamic Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="../../Images/تصميم بدون عنوان_20250805_160357_٠٠٠٠ (1).png" alt="شغلك Logo" class="nav-logo" width="50" height="50">
+                <h2><i class="#"></i> </h2>
+            </div>
+            <div class="nav-menu">
+                <a href="../../index.html" class="nav-link"><i class="fas fa-home"></i>الرئيسية</a>
+                <a href="../onboarding/onboarding.html" class="nav-link"><i class="fas fa-user-plus"></i>الترحيب</a>
+                <a href="../opportunities/opportunities.html" class="nav-link"><i class="fas fa-briefcase"></i>الفرص</a>
+                <a href="../profile/profile.html" class="nav-link"><i class="fas fa-user"></i>الملف الشخصي</a>
+                <a href="social.html" class="nav-link active"><i class="fas fa-users"></i>المجتمع</a>
+                <a href="../messages/messages.html" class="nav-link"><i class="fas fa-envelope"></i>الرسائل</a>
+                <a href="../reporting/reporting.html" class="nav-link"><i class="fas fa-flag"></i>الإبلاغ</a>
+                <a href="../projects/project-submission.html" class="nav-link"><i class="fas fa-upload"></i>تقديم المشروع</a>
+            </div>
+            <div class="nav-user">
+                <button id="notificationsBtn" class="nav-btn" data-tooltip="الإشعارات" title="انتقل إلى صفحة الإشعارات">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-count">5</span>
+                </button>
+                <button id="messagesBtn" class="nav-btn" data-tooltip="الرسائل" title="انتقل إلى صفحة الرسائل">
+                    <i class="fas fa-envelope"></i>
+                    <span class="message-count">3</span>
+                </button>
+                <div class="user-profile-dropdown" id="userProfileDropdown">
+                    <img src="https://via.placeholder.com/40" alt="صورة المستخدم" class="user-avatar">
+                    <div class="dropdown-menu" id="dropdownMenu">
+                        <a href="../profile/profile.html" class="dropdown-item">
+                            <i class="fas fa-user"></i> الملف الشخصي
+                        </a>
+                        
+                    </div>
+                </div>
+            </div>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Enhanced Notifications Panel -->
+    <div class="notifications-panel" id="notificationsPanel">
+        <div class="notifications-header">
+            <h3><i class="fas fa-bell"></i> الإشعارات</h3>
+            <div class="notifications-controls">
+                <button class="mark-all-read" id="markAllRead" title="تحديد الكل كمقروء">
+                    <i class="fas fa-check-double"></i>
+                </button>
+                <button class="view-all-notifications" onclick="window.location.href='../messages/messages.html#notifications'" title="عرض جميع الإشعارات">
+                    <i class="fas fa-external-link-alt"></i>
+                </button>
+                <button class="close-notifications" id="closeNotifications">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+        <div class="notifications-filter">
+            <button class="filter-btn active" data-category="all">الكل</button>
+            <button class="filter-btn" data-category="interactions">التفاعلات</button>
+            <button class="filter-btn" data-category="requests">الطلبات</button>
+            <button class="filter-btn" data-category="projects">المشاريع</button>
+        </div>
+        <div class="notifications-list" id="notificationsList">
+            <!-- Recent Interactions -->
+            <div class="notification-item unread fade-in" data-category="interactions" onclick="handleNotificationClick('mention', 'sara')">
+                <div class="notification-icon mention">
+                    <i class="fas fa-at"></i>
+                </div>
+                <div class="notification-content">
+                    <p>تم ذكرك في منشور بواسطة <strong>@سارة أحمد</strong></p>
+                    <span class="notification-time">منذ 5 دقائق</span>
+                </div>
+                <div class="notification-actions">
+                    <button class="notification-action-btn" onclick="viewPost('post123')" title="عرض المنشور">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                    <button class="notification-action-btn" onclick="markAsRead(this)" title="تحديد كمقروء">
+                        <i class="fas fa-check"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="notification-item unread fade-in" data-category="interactions" onclick="handleNotificationClick('comment', 'fatima')">
+                <div class="notification-icon comment">
+                    <i class="fas fa-comment"></i>
+                </div>
+                <div class="notification-content">
+                    <p>علق <strong>@فاطمة محمود</strong> على منشورك: "فكرة رائعة! هل يمكنني المشاركة؟"</p>
+                    <span class="notification-time">منذ 15 دقيقة</span>
+                </div>
+                <div class="notification-actions">
+                    <button class="notification-action-btn" onclick="viewPost('post789')" title="عرض التعليق">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                    <button class="notification-action-btn" onclick="replyToComment('comment789')" title="رد">
+                        <i class="fas fa-reply"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="notification-item fade-in" data-category="interactions" onclick="handleNotificationClick('like', 'mohamed')">
+                <div class="notification-icon like">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <div class="notification-content">
+                    <p>أعجب <strong>@محمد علي</strong> و <strong>3 آخرين</strong> بمنشورك</p>
+                    <span class="notification-time">منذ ساعة</span>
+                </div>
+                <div class="notification-actions">
+                    <button class="notification-action-btn" onclick="viewPost('post456')" title="عرض المنشور">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Volunteer Requests -->
+            <div class="notification-item unread fade-in" data-category="requests" onclick="handleNotificationClick('volunteer', 'ali')">
+                <div class="notification-icon volunteer">
+                    <i class="fas fa-hand-holding-heart"></i>
+                </div>
+                <div class="notification-content">
+                    <p>طلب <strong>@علي محمد</strong> التطوع في مشروع "تطبيق إدارة المهام"</p>
+                    <span class="notification-time">منذ 30 دقيقة</span>
+                </div>
+                <div class="notification-actions">
+                    <button class="notification-action-btn accept" onclick="acceptVolunteer('volunteer123')" title="قبول">
+                        <i class="fas fa-check"></i>
+                    </button>
+                    <button class="notification-action-btn decline" onclick="declineVolunteer('volunteer123')" title="رفض">
+                        <i class="fas fa-times"></i>
+                    </button>
+                    <button class="notification-action-btn" onclick="viewVolunteerProfile('ali')" title="عرض الملف الشخصي">
+                        <i class="fas fa-user"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Project Updates -->
+            <div class="notification-item fade-in" data-category="projects" onclick="handleNotificationClick('project_update', 'team')">
+                <div class="notification-icon project">
+                    <i class="fas fa-project-diagram"></i>
+                </div>
+                <div class="notification-content">
+                    <p>تم تحديث مشروع <strong>"موقع التجارة الإلكترونية"</strong> - تم إنجاز 75% من المهام</p>
+                    <span class="notification-time">منذ ساعتين</span>
+                </div>
+                <div class="notification-actions">
+                    <button class="notification-action-btn" onclick="viewProject('project456')" title="عرض المشروع">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Collaboration Requests -->
+            <div class="notification-item unread fade-in" data-category="requests" onclick="handleNotificationClick('collaboration', 'nour')">
+                <div class="notification-icon collaboration">
+                    <i class="fas fa-handshake"></i>
+                </div>
+                <div class="notification-content">
+                    <p>دعتك <strong>@نور أحمد</strong> للتعاون في مشروع "تطبيق الطقس"</p>
+                    <span class="notification-time">منذ 3 ساعات</span>
+                </div>
+                <div class="notification-actions">
+                    <button class="notification-action-btn accept" onclick="acceptCollaboration('collab123')" title="قبول">
+                        <i class="fas fa-check"></i>
+                    </button>
+                    <button class="notification-action-btn decline" onclick="declineCollaboration('collab123')" title="رفض">
+                        <i class="fas fa-times"></i>
+                    </button>
+                    <button class="notification-action-btn" onclick="viewCollaborationDetails('collab123')" title="التفاصيل">
+                        <i class="fas fa-info"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Ratings and Reviews -->
+            <div class="notification-item fade-in" data-category="interactions" onclick="handleNotificationClick('rating', 'omar')">
+                <div class="notification-icon rating">
+                    <i class="fas fa-star"></i>
+                </div>
+                <div class="notification-content">
+                    <p>تم تقييمك بـ <strong>5 نجوم</strong> من <strong>@عمر أحمد</strong> مع تعليق: "عمل ممتاز ومحترف"</p>
+                    <span class="notification-time">منذ 4 ساعات</span>
+                </div>
+                <div class="notification-actions">
+                    <button class="notification-action-btn" onclick="viewRating('rating123')" title="عرض التقييم">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                    <button class="notification-action-btn" onclick="thankForRating('rating123')" title="شكر">
+                        <i class="fas fa-heart"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Follow Notifications -->
+            <div class="notification-item fade-in" data-category="interactions" onclick="handleNotificationClick('follow', 'layla')">
+                <div class="notification-icon follow">
+                    <i class="fas fa-user-plus"></i>
+                </div>
+                <div class="notification-content">
+                    <p>بدأت <strong>@ليلى محمد</strong> و <strong>2 آخرين</strong> بمتابعتك</p>
+                    <span class="notification-time">منذ 5 ساعات</span>
+                </div>
+                <div class="notification-actions">
+                    <button class="notification-action-btn" onclick="viewFollowers()" title="عرض المتابعين">
+                        <i class="fas fa-users"></i>
+                    </button>
+                    <button class="notification-action-btn" onclick="followBack('layla')" title="متابعة مرتدة">
+                        <i class="fas fa-user-plus"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Message Notifications -->
+            <div class="notification-item unread fade-in" data-category="interactions" onclick="handleNotificationClick('message', 'hassan')">
+                <div class="notification-icon message">
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <div class="notification-content">
+                    <p>رسالة جديدة من <strong>@حسن علي</strong>: "مرحباً، أود مناقشة فرصة عمل معك"</p>
+                    <span class="notification-time">منذ 6 ساعات</span>
+                </div>
+                <div class="notification-actions">
+                    <button class="notification-action-btn" onclick="openChat('hassan')" title="فتح المحادثة">
+                        <i class="fas fa-comment"></i>
+                    </button>
+                    <button class="notification-action-btn" onclick="quickReply('hassan')" title="رد سريع">
+                        <i class="fas fa-reply"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- System Notifications -->
+            <div class="notification-item fade-in" data-category="projects" onclick="handleNotificationClick('system', 'system')">
+                <div class="notification-icon system">
+                    <i class="fas fa-cog"></i>
+                </div>
+                <div class="notification-content">
+                    <p>تم تحديث ملفك الشخصي بنجاح. أصبح لديك الآن <strong>50 متابع</strong>!</p>
+                    <span class="notification-time">منذ يوم</span>
+                </div>
+                <div class="notification-actions">
+                    <button class="notification-action-btn" onclick="viewProfile()" title="عرض الملف الشخصي">
+                        <i class="fas fa-user"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Enhanced Direct Messages Panel -->
+    <div class="messages-panel" id="messagesPanel">
+        <div class="messages-header">
+            <h3>الرسائل المباشرة</h3>
+            <div class="messages-controls">
+                <button class="view-all-messages" onclick="window.location.href='../messages/messages.html'" title="عرض جميع الرسائل">
+                    <i class="fas fa-external-link-alt"></i>
+                </button>
+                <button class="close-messages" id="closeMessages">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+        <div class="messages-search">
+            <input type="text" placeholder="البحث في الرسائل..." id="messagesSearch">
+            <i class="fas fa-search"></i>
+        </div>
+        <div class="messages-list" id="messagesList">
+            <div class="message-item fade-in unread" onclick="openChat('sara')" data-user-id="sara">
+                <div class="message-avatar">
+                    <img src="https://via.placeholder.com/40x40/667eea/ffffff?text=س" alt="سارة">
+                    <div class="online-status online"></div>
+                </div>
+                <div class="message-content">
+                    <div class="message-header">
+                        <span class="message-name">سارة أحمد</span>
+                        <span class="message-time">منذ 5 دقائق</span>
+                    </div>
+                    <p class="message-preview">مرحباً، هل يمكنني التواصل معك بخصوص مشروع التصميم؟</p>
+                </div>
+                <div class="message-status">
+                    <span class="unread-badge">2</span>
+                </div>
+            </div>
+            <div class="message-item fade-in" onclick="openChat('mohamed')" data-user-id="mohamed">
+                <div class="message-avatar">
+                    <img src="https://via.placeholder.com/40x40/28a745/ffffff?text=م" alt="محمد">
+                    <div class="online-status offline"></div>
+                </div>
+                <div class="message-content">
+                    <div class="message-header">
+                        <span class="message-name">محمد علي</span>
+                        <span class="message-time">منذ ساعة</span>
+                    </div>
+                    <p class="message-preview">شكراً لك على المساعدة في المشروع</p>
+                </div>
+            </div>
+            <div class="message-item fade-in unread" onclick="openChat('fatima')" data-user-id="fatima">
+                <div class="message-avatar">
+                    <img src="https://via.placeholder.com/40x40/dc3545/ffffff?text=ف" alt="فاطمة">
+                    <div class="online-status online"></div>
+                </div>
+                <div class="message-content">
+                    <div class="message-header">
+                        <span class="message-name">فاطمة محمود</span>
+                        <span class="message-time">منذ 3 ساعات</span>
+                    </div>
+                    <p class="message-preview">أحتاج مساعدة في تصميم شعار</p>
+                </div>
+                <div class="message-status">
+                    <span class="unread-badge">1</span>
+                </div>
+            </div>
+            <div class="message-item fade-in" onclick="openChat('ali')" data-user-id="ali">
+                <div class="message-avatar">
+                    <img src="https://via.placeholder.com/40x40/ffc107/ffffff?text=ع" alt="علي">
+                    <div class="online-status away"></div>
+                </div>
+                <div class="message-content">
+                    <div class="message-header">
+                        <span class="message-name">علي محمد</span>
+                        <span class="message-time">منذ 5 ساعات</span>
+                    </div>
+                    <p class="message-preview">هل يمكنني التطوع في مشروعك الجديد؟</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Enhanced Chat Window -->
+    <div class="chat-window" id="chatWindow">
+        <div class="chat-header">
+            <div class="chat-user-info" onclick="viewUserProfile()">
+                <div class="chat-avatar">
+                    <img src="https://via.placeholder.com/40x40/667eea/ffffff?text=س" alt="User" id="chatUserAvatar">
+                    <div class="online-status online" id="chatUserStatus"></div>
+                </div>
+                <div class="chat-user-details">
+                    <span class="chat-user-name" id="chatUserName">سارة أحمد</span>
+                    <span class="chat-user-status" id="chatUserStatusText">متصل الآن</span>
+                </div>
+            </div>
+            <div class="chat-actions">
+                <button class="chat-action-btn" onclick="toggleVoiceCall()">
+                    <i class="fas fa-phone"></i>
+                </button>
+                <button class="chat-action-btn" onclick="toggleVideoCall()">
+                    <i class="fas fa-video"></i>
+                </button>
+                <button class="chat-action-btn" onclick="toggleChatInfo()">
+                    <i class="fas fa-info-circle"></i>
+                </button>
+                <button class="close-chat" id="closeChat">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+            <div class="message received">
+                <div class="message-content">
+                    <p>مرحباً، هل يمكنني التواصل معك بخصوص مشروع التصميم؟</p>
+                    <span class="message-time">10:30 ص</span>
+                </div>
+            </div>
+            <div class="message sent">
+                <div class="message-content">
+                    <p>مرحباً سارة، بالتأكيد! ما هو نوع المشروع؟</p>
+                    <span class="message-time">10:32 ص</span>
+                </div>
+            </div>
+            <div class="message received">
+                <div class="message-content">
+                    <div class="message-image">
+                        <img src="https://via.placeholder.com/300x200/667eea/ffffff?text=Project+Mockup" alt="Project Mockup" loading="lazy">
+                    </div>
+                    <p>هذا مثال على التصميم المطلوب</p>
+                    <span class="message-time">10:35 ص</span>
+                </div>
+            </div>
+            <div class="message sent">
+                <div class="message-content">
+                    <p>ممتاز! أعتقد أنني أستطيع مساعدتك في هذا المشروع</p>
+                    <span class="message-time">10:37 ص</span>
+                </div>
+            </div>
+        </div>
+        <div class="chat-input">
+            <div class="input-actions">
+                <button class="action-btn" onclick="document.getElementById('chatImageInput').click()">
+                    <i class="fas fa-image"></i>
+                </button>
+                <button class="action-btn" onclick="document.getElementById('chatFileInput').click()">
+                    <i class="fas fa-paperclip"></i>
+                </button>
+                <button class="action-btn" onclick="toggleEmojiPicker()">
+                    <i class="fas fa-smile"></i>
+                </button>
+                <button class="action-btn" onclick="toggleVoiceMessage()">
+                    <i class="fas fa-microphone"></i>
+                </button>
+            </div>
+            <div class="input-container">
+                <textarea id="chatMessageInput" placeholder="اكتب رسالتك..." rows="1"></textarea>
+                <button class="send-btn" id="sendMessageBtn">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+            <input type="file" id="chatImageInput" accept="image/*" style="display: none;">
+            <input type="file" id="chatFileInput" accept=".pdf,.doc,.docx,.txt" style="display: none;">
+        </div>
+    </div>
+
+    <!-- Enhanced Professional Volunteer Request Modal -->
+    <div class="modal" id="volunteerModal">
+        <div class="modal-content volunteer-modal-enhanced">
+            <div class="modal-header">
+                <div class="modal-icon-enhanced">
+                    <i class="fas fa-handshake"></i>
+                </div>
+                <div class="header-content">
+                    <h3>طلب تطوع مجاني</h3>
+                    <p class="header-subtitle">التطوع مجاني - اكتب اقتراحاتك وتفاصيل المبرمج المطلوب</p>
+                </div>
+                <button class="close-modal" onclick="closeVolunteerModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="modal-body">
+                <!-- Target User Info -->
+                <div class="target-user-card">
+                    <div class="user-header">
+                        <img src="https://via.placeholder.com/60x60/4B0082/ffffff?text=أ" alt="Target User" class="target-avatar">
+                        <div class="user-info">
+                            <h4>إلى: <span id="volunteerTargetName">أحمد سعيد</span></h4>
+                            <div class="user-badges">
+                                <span class="badge verified">✓ محقق</span>
+                                <span class="badge rating">⭐ 4.8</span>
+                                <span class="badge projects">📁 150 مشروع</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Volunteer Note -->
+                <div class="volunteer-note">
+                    <div class="note-content">
+                        <i class="fas fa-heart text-danger"></i>
+                        <span>التطوع مجاني من جانبك - ساعد في تقديم الاقتراحات وتحديد المبرمج المناسب</span>
+                    </div>
+                </div>
+
+                <!-- Simplified Form -->
+                <form class="volunteer-form-simplified" id="volunteerFormSimplified">
+                    <!-- Volunteer Suggestions Section -->
+                    <div class="form-section">
+                        <h5><i class="fas fa-lightbulb"></i> اقتراحاتك للمشروع</h5>
+                        <div class="form-group">
+                            <label for="volunteerSuggestions">ما هي اقتراحاتك لتحسين أو تطوير هذا المشروع؟</label>
+                            <textarea id="volunteerSuggestions" rows="5" placeholder="اكتب اقتراحاتك وأفكارك لتطوير المشروع، التقنيات المناسبة، التحسينات المقترحة..." class="modern-textarea" required></textarea>
+                            <div class="char-counter">
+                                <span id="suggestionsCounter">0</span>/1000 حرف
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Required Programmer Details Section -->
+                    <div class="form-section">
+                        <h5><i class="fas fa-user-cog"></i> تفاصيل المبرمج المطلوب</h5>
+                        
+                        <div class="form-group">
+                            <label for="requiredSkills">المهارات التقنية المطلوبة</label>
+                            <textarea id="requiredSkills" rows="3" placeholder="مثال: HTML, CSS, JavaScript, React, Node.js, قواعد البيانات..." class="modern-textarea" required></textarea>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="experienceLevel">مستوى الخبرة المطلوب</label>
+                                <select id="experienceLevel" class="modern-select" required>
+                                    <option value="">اختر مستوى الخبرة</option>
+                                    <option value="beginner">مبتدئ (أقل من سنة)</option>
+                                    <option value="intermediate">متوسط (1-3 سنوات)</option>
+                                    <option value="advanced">متقدم (3-5 سنوات)</option>
+                                    <option value="expert">خبير (أكثر من 5 سنوات)</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="workType">نوع العمل</label>
+                                <select id="workType" class="modern-select" required>
+                                    <option value="">اختر نوع العمل</option>
+                                    <option value="full-development">تطوير كامل</option>
+                                    <option value="frontend">تطوير واجهات أمامية</option>
+                                    <option value="backend">تطوير خلفي</option>
+                                    <option value="design">تصميم</option>
+                                    <option value="consultation">استشارة تقنية</option>
+                                    <option value="debugging">إصلاح أخطاء</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="additionalRequirements">متطلبات إضافية</label>
+                            <textarea id="additionalRequirements" rows="3" placeholder="أي متطلبات أخرى مثل: التوفر، اللغة، طريقة التواصل، الخبرة في مجال معين..." class="modern-textarea"></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Project Price Section -->
+                    <div class="form-section">
+                        <h5><i class="fas fa-dollar-sign"></i> السعر المقترح للمشروع</h5>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="proposedPrice">السعر المقترح</label>
+                                <div class="price-input-container">
+                                    <input type="number" id="proposedPrice" placeholder="0" class="modern-input" required>
+                                    <span class="currency">ريال سعودي</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="estimatedDuration">المدة المتوقعة</label>
+                                <select id="estimatedDuration" class="modern-select" required>
+                                    <option value="">اختر المدة</option>
+                                    <option value="1-3-days">1-3 أيام</option>
+                                    <option value="1-week">أسبوع واحد</option>
+                                    <option value="2-weeks">أسبوعين</option>
+                                    <option value="1-month">شهر واحد</option>
+                                    <option value="2-3-months">2-3 أشهر</option>
+                                    <option value="more">أكثر من 3 أشهر</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="priceJustification">مبرر السعر</label>
+                            <textarea id="priceJustification" rows="3" placeholder="اشرح كيف وصلت لهذا السعر (تعقيد المشروع، الوقت المطلوب، المهارات المطلوبة...)" class="modern-textarea" required></textarea>
+                        </div>
+
+                        <div class="pricing-note">
+                            <i class="fas fa-info-circle"></i>
+                            <span>ملاحظة: التطوع مجاني من جانبك، هذا السعر هو اقتراحك لما يجب أن يدفعه صاحب المشروع للمبرمج</span>
+                        </div>
+                    </div>
+
+                    <!-- Contact Information -->
+                    <div class="form-section">
+                        <h5><i class="fas fa-envelope"></i> معلومات التواصل</h5>
+                        <div class="form-group">
+                            <label for="contactMessage">رسالة شخصية (اختيارية)</label>
+                            <textarea id="contactMessage" rows="2" placeholder="رسالة قصيرة لصاحب المشروع..." class="modern-textarea"></textarea>
+                        </div>
+                    </div>
+
+
+                </form>
+
+                <!-- Request Summary -->
+                <div class="request-summary" id="requestSummary">
+                    <h5><i class="fas fa-clipboard-check"></i> ملخص الطلب</h5>
+                    <div class="summary-content">
+                        <div class="summary-item">
+                            <span class="label">السعر المقترح:</span>
+                            <span class="value" id="summaryPrice">-</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="label">المدة المتوقعة:</span>
+                            <span class="value" id="summaryDuration">-</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="label">نوع العمل:</span>
+                            <span class="value" id="summaryWorkType">-</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="label">مستوى الخبرة:</span>
+                            <span class="value" id="summaryExperience">-</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeVolunteerModal()">
+                    <i class="fas fa-times"></i>
+                    إلغاء
+                </button>
+                <button class="btn btn-primary" onclick="sendEnhancedVolunteerRequest()" id="sendRequestBtn">
+                    <span class="btn-text">
+                        <i class="fas fa-paper-plane"></i>
+                        إرسال طلب التطوع
+                    </span>
+                    <span class="btn-loading" style="display: none;">
+                        <i class="fas fa-spinner fa-spin"></i>
+                        جاري الإرسال...
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!-- User Profile Modal -->
+    <div class="modal" id="userProfileModal">
+        <div class="modal-content profile-modal">
+            <div class="modal-header">
+                <div class="modal-icon">
+                    <i class="fas fa-user"></i>
+                </div>
+                <h3>الملف الشخصي</h3>
+                <button class="close-modal" onclick="closeUserProfileModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="profile-header">
+                    <div class="profile-cover">
+                        <img src="https://via.placeholder.com/400x150/4B0082/ffffff?text=Cover+Image" alt="Cover" class="cover-image">
+                    </div>
+                    <div class="profile-avatar">
+                        <img src="https://via.placeholder.com/120x120/4B0082/ffffff?text=أ" alt="Profile" class="avatar-image">
+                    </div>
+                    <div class="profile-info">
+                        <h2 id="profileUserName">أحمد سعيد</h2>
+                        <p class="profile-title" id="profileUserTitle">مطور ويب متخصص</p>
+                        <div class="profile-stats">
+                            <div class="stat">
+                                <span class="stat-number">150</span>
+                                <span class="stat-label">مشروع</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-number">4.8</span>
+                                <span class="stat-label">تقييم</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-number">89%</span>
+                                <span class="stat-label">إنجاز</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="profile-content">
+                    <div class="profile-section">
+                        <h4>نبذة عني</h4>
+                        <p id="profileUserBio">مطور ويب متخصص في React و Node.js مع خبرة 5 سنوات في تطوير التطبيقات الحديثة.</p>
+                    </div>
+                    <div class="profile-section">
+                        <h4>المهارات</h4>
+                        <div class="skills-list" id="profileSkills">
+                            <span class="skill-badge">React</span>
+                            <span class="skill-badge">Node.js</span>
+                            <span class="skill-badge">JavaScript</span>
+                            <span class="skill-badge">TypeScript</span>
+                            <span class="skill-badge">MongoDB</span>
+                        </div>
+                    </div>
+                    <div class="profile-section">
+                        <h4>المشاريع الأخيرة</h4>
+                        <div class="recent-projects" id="recentProjects">
+                            <!-- Projects will be loaded here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeUserProfileModal()">إغلاق</button>
+                <button class="btn btn-primary" onclick="sendMessageFromProfile()">
+                    إرسال رسالة
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Enhanced Create Post Section -->
+            <div class="create-post-section fade-in">
+                <div class="post-form">
+                    <div class="post-header">
+                        <div class="user-info">
+                            <div class="user-avatar">
+                                <img src="https://via.placeholder.com/50x50/4B0082/ffffff?text=أ" alt="User" class="user-avatar-img">
+                            </div>
+                            <div class="user-details">
+                                <span class="user-name" id="currentUserName">أحمد سعيد</span>
+                                <div class="post-privacy">
+                                    <select id="postPrivacy" class="modern-select">
+                                        <option value="public">عام</option>
+                                        <option value="private">خاص</option>
+                                        <option value="connections">الصلات فقط</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="post-content">
+                        <textarea id="postText" placeholder="اكتب منشورك هنا... يمكنك ذكر المستخدمين باستخدام @ أو إضافة #hashtags" rows="4"></textarea>
+                        <div class="post-attachments">
+                            <div class="file-upload-btn">
+                                <input type="file" id="fileInput" multiple accept="image/*,.pdf,.doc,.docx" style="display: none;">
+                                <button type="button" class="attachment-btn" onclick="document.getElementById('fileInput').click()">
+                                    <i class="fas fa-paperclip"></i>
+                                    إرفاق ملفات
+                                </button>
+                            </div>
+                            <div class="attached-files" id="attachedFiles" style="display: none;">
+                                <!-- Attached files will be displayed here -->
+                            </div>
+                            <div class="file-size-info">
+                                الحد الأقصى: 5 ميجابايت لكل ملف
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="post-actions">
+                        <button class="btn btn-primary publish-btn" id="publishPostBtn">
+                            <span class="btn-text">
+                                <i class="fas fa-paper-plane"></i>
+                                نشر المنشور
+                            </span>
+                            <span class="btn-loading" style="display: none;">
+                                <i class="fas fa-spinner fa-spin"></i>
+                                جاري النشر...
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Enhanced Posts Feed -->
+            <div class="posts-feed" id="postsFeed">
+                <!-- Sample Post 1 -->
+                <div class="post-card fade-in" data-post-id="1">
+                    <div class="post-header">
+                        <div class="user-info" data-user-id="sara" onclick="viewUserProfile('sara')">
+                            <div class="user-avatar" data-user-id="sara">
+                                <img src="https://via.placeholder.com/50x50/667eea/ffffff?text=س" alt="سارة" class="user-avatar-img" data-user-id="sara">
+                            </div>
+                            <div class="user-details">
+                                <span class="user-name">سارة أحمد</span>
+                                <span class="post-time">منذ ساعة</span>
+                                <span class="post-privacy-badge">عام</span>
+                            </div>
+                        </div>
+                        <div class="post-menu">
+                            <button class="menu-btn" onclick="togglePostMenu(1)">
+                                <i class="fas fa-ellipsis-h"></i>
+                            </button>
+                            <div class="post-menu-dropdown" id="postMenu1">
+                                <a href="#" onclick="reportPost(1)">إبلاغ</a>
+                                <a href="#" onclick="hidePost(1)">إخفاء</a>
+                                <a href="#" onclick="copyPostLink(1)">نسخ الرابط</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="post-content">
+                        <p>انتهيت من مشروع تطوير موقع إلكتروني لشركة تجارية. كانت تجربة رائعة! شكراً لـ @أحمد سعيد على المساعدة في حل المشاكل التقنية.</p>
+                        <div class="post-image">
+                            <img src="https://via.placeholder.com/600x300/667eea/ffffff?text=Project+Screenshot" alt="Project Screenshot" loading="lazy">
+                        </div>
+                        <div class="post-tags">
+                            <span class="tag">#WebDevelopment</span>
+                            <span class="tag">#React</span>
+                            <span class="tag">#Project</span>
+                        </div>
+                    </div>
+                    
+                    <div class="post-actions">
+                        <button class="action-btn like-btn" onclick="toggleLike(1)" data-liked="false">
+                            <i class="far fa-heart"></i>
+                            <span class="like-count">12</span>
+                        </button>
+                        <button class="action-btn comment-btn" onclick="toggleComments(1)">
+                            <i class="far fa-comment"></i>
+                            <span class="comment-count">5</span>
+                        </button>
+                        <button class="action-btn share-btn" onclick="sharePost(1)">
+                            <i class="fas fa-share"></i>
+                        </button>
+
+                        <button class="action-btn volunteer-btn" onclick="showVolunteerModal('sara')">
+                            <i class="fas fa-hand-holding-heart"></i>
+                            طلب تطوع
+                        </button>
+                    </div>
+                    
+                    <div class="comments-section" id="comments1" style="display: none;">
+                        <div class="comments-list">
+                            <div class="comment fade-in">
+                                <div class="comment-user" data-user-id="ahmed" onclick="viewUserProfile('ahmed')">
+                                    <img src="https://via.placeholder.com/30x30/4B0082/ffffff?text=أ" alt="أحمد" class="comment-avatar" data-user-id="ahmed">
+                                    <span>أحمد سعيد</span>
+                                </div>
+                                <div class="comment-content">
+                                    <p>ممتاز! العمل رائع 👏</p>
+                                </div>
+                                <span class="comment-time">منذ 30 دقيقة</span>
+                            </div>
+                            <div class="comment fade-in">
+                                <div class="comment-user" data-user-id="mohamed" onclick="viewUserProfile('mohamed')">
+                                    <img src="https://via.placeholder.com/30x30/28a745/ffffff?text=م" alt="محمد" class="comment-avatar" data-user-id="mohamed">
+                                    <span>محمد علي</span>
+                                </div>
+                                <div class="comment-content">
+                                    <p>أحتاج مساعدة في مشروع مشابه، هل يمكنني التواصل معك؟</p>
+                                </div>
+                                <span class="comment-time">منذ 15 دقيقة</span>
+                            </div>
+                        </div>
+                        <div class="add-comment">
+                            <img src="https://via.placeholder.com/30x30/4B0082/ffffff?text=أ" alt="أحمد" class="comment-avatar">
+                            <input type="text" class="comment-input" placeholder="اكتب تعليقك..." onkeypress="handleCommentKeypress(event, 1)">
+                            <button class="btn btn-sm btn-primary" onclick="addComment(1)">إرسال</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sample Post 2 -->
+                <div class="post-card fade-in" data-post-id="2">
+                    <div class="post-header">
+                        <div class="user-info" data-user-id="mohamed" onclick="viewUserProfile('mohamed')">
+                            <div class="user-avatar" data-user-id="mohamed">
+                                <img src="https://via.placeholder.com/50x50/28a745/ffffff?text=م" alt="محمد" class="user-avatar-img" data-user-id="mohamed">
+                            </div>
+                            <div class="user-details">
+                                <span class="user-name">محمد علي</span>
+                                <span class="post-time">منذ 3 ساعات</span>
+                                <span class="post-privacy-badge">عام</span>
+                            </div>
+                        </div>
+                        <div class="post-menu">
+                            <button class="menu-btn" onclick="togglePostMenu(2)">
+                                <i class="fas fa-ellipsis-h"></i>
+                            </button>
+                            <div class="post-menu-dropdown" id="postMenu2">
+                                <a href="#" onclick="reportPost(2)">إبلاغ</a>
+                                <a href="#" onclick="hidePost(2)">إخفاء</a>
+                                <a href="#" onclick="copyPostLink(2)">نسخ الرابط</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="post-content">
+                        <p>أبحث عن مطور ويب متخصص في React لانضمامه إلى فريق العمل. الراتب ممتاز والبيئة عمل رائعة. من يهتم؟</p>
+                        <div class="post-tags">
+                            <span class="tag">#React</span>
+                            <span class="tag">#WebDevelopment</span>
+                            <span class="tag">#JobOpportunity</span>
+                        </div>
+                    </div>
+                    
+                    <div class="post-actions">
+                        <button class="action-btn like-btn" onclick="toggleLike(2)" data-liked="false">
+                            <i class="far fa-heart"></i>
+                            <span class="like-count">8</span>
+                        </button>
+                        <button class="action-btn comment-btn" onclick="toggleComments(2)">
+                            <i class="far fa-comment"></i>
+                            <span class="comment-count">3</span>
+                        </button>
+                        <button class="action-btn share-btn" onclick="sharePost(2)">
+                            <i class="fas fa-share"></i>
+                        </button>
+
+                        <button class="action-btn volunteer-btn" onclick="showVolunteerModal('mohamed')">
+                            <i class="fas fa-hand-holding-heart"></i>
+                            طلب تطوع
+                        </button>
+                    </div>
+                    
+                    <div class="comments-section" id="comments2" style="display: none;">
+                        <div class="comments-list">
+                            <div class="comment fade-in">
+                                <div class="comment-user" data-user-id="ahmed" onclick="viewUserProfile('ahmed')">
+                                    <img src="https://via.placeholder.com/30x30/4B0082/ffffff?text=أ" alt="أحمد" class="comment-avatar" data-user-id="ahmed">
+                                    <span>أحمد سعيد</span>
+                                </div>
+                                <div class="comment-content">
+                                    <p>أهتم بالوظيفة! هل يمكنني إرسال سيرتي الذاتية؟</p>
+                                </div>
+                                <span class="comment-time">منذ ساعة</span>
+                            </div>
+                            <div class="comment fade-in">
+                                <div class="comment-user" data-user-id="sara" onclick="viewUserProfile('sara')">
+                                    <img src="https://via.placeholder.com/30x30/667eea/ffffff?text=س" alt="سارة" class="comment-avatar" data-user-id="sara">
+                                    <span>سارة أحمد</span>
+                                </div>
+                                <div class="comment-content">
+                                    <p>أيضاً أهتم! لدي خبرة 3 سنوات في React</p>
+                                </div>
+                                <span class="comment-time">منذ 45 دقيقة</span>
+                            </div>
+                        </div>
+                        <div class="add-comment">
+                            <img src="https://via.placeholder.com/30x30/4B0082/ffffff?text=أ" alt="أحمد" class="comment-avatar">
+                            <input type="text" class="comment-input" placeholder="اكتب تعليقك..." onkeypress="handleCommentKeypress(event, 2)">
+                            <button class="btn btn-sm btn-primary" onclick="addComment(2)">إرسال</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sample Post 3 -->
+                <div class="post-card fade-in" data-post-id="3">
+                    <div class="post-header">
+                        <div class="user-info" data-user-id="fatima" onclick="viewUserProfile('fatima')">
+                            <div class="user-avatar" data-user-id="fatima">
+                                <img src="https://via.placeholder.com/50x50/dc3545/ffffff?text=ف" alt="فاطمة" class="user-avatar-img" data-user-id="fatima">
+                            </div>
+                            <div class="user-details">
+                                <span class="user-name">فاطمة محمود</span>
+                                <span class="post-time">منذ 5 ساعات</span>
+                                <span class="post-privacy-badge">خاص</span>
+                            </div>
+                        </div>
+                        <div class="post-menu">
+                            <button class="menu-btn" onclick="togglePostMenu(3)">
+                                <i class="fas fa-ellipsis-h"></i>
+                            </button>
+                            <div class="post-menu-dropdown" id="postMenu3">
+                                <a href="#" onclick="reportPost(3)">إبلاغ</a>
+                                <a href="#" onclick="hidePost(3)">إخفاء</a>
+                                <a href="#" onclick="copyPostLink(3)">نسخ الرابط</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="post-content">
+                        <p>انتهيت من تصميم شعار جديد لشركة تقنية. العملاء سعداء بالنتيجة النهائية!</p>
+                        <div class="post-image">
+                            <img src="https://via.placeholder.com/600x400/28a745/ffffff?text=Logo+Design" alt="Logo Design" loading="lazy">
+                        </div>
+                        <div class="post-tags">
+                            <span class="tag">#LogoDesign</span>
+                            <span class="tag">#GraphicDesign</span>
+                            <span class="tag">#Creative</span>
+                        </div>
+                    </div>
+                    
+                    <div class="post-actions">
+                        <button class="action-btn like-btn" onclick="toggleLike(3)" data-liked="false">
+                            <i class="far fa-heart"></i>
+                            <span class="like-count">15</span>
+                        </button>
+                        <button class="action-btn comment-btn" onclick="toggleComments(3)">
+                            <i class="far fa-comment"></i>
+                            <span class="comment-count">7</span>
+                        </button>
+                        <button class="action-btn share-btn" onclick="sharePost(3)">
+                            <i class="fas fa-share"></i>
+                        </button>
+
+                        <button class="action-btn volunteer-btn" onclick="showVolunteerModal('fatima')">
+                            <i class="fas fa-hand-holding-heart"></i>
+                            طلب تطوع
+                        </button>
+                    </div>
+                    
+                    <div class="comments-section" id="comments3" style="display: none;">
+                        <div class="comments-list">
+                            <div class="comment fade-in">
+                                <div class="comment-user" data-user-id="ahmed" onclick="viewUserProfile('ahmed')">
+                                    <img src="https://via.placeholder.com/30x30/4B0082/ffffff?text=أ" alt="أحمد" class="comment-avatar" data-user-id="ahmed">
+                                    <span>أحمد سعيد</span>
+                                </div>
+                                <div class="comment-content">
+                                    <p>التصميم جميل جداً! 👍</p>
+                                </div>
+                                <span class="comment-time">منذ 4 ساعات</span>
+                            </div>
+                            <div class="comment fade-in">
+                                <div class="comment-user" data-user-id="sara" onclick="viewUserProfile('sara')">
+                                    <img src="https://via.placeholder.com/30x30/667eea/ffffff?text=س" alt="سارة" class="comment-avatar" data-user-id="sara">
+                                    <span>سارة أحمد</span>
+                                </div>
+                                <div class="comment-content">
+                                    <p>أحتاج مصمم لتصميم شعار لشركتي، هل يمكنني التواصل معك؟</p>
+                                </div>
+                                <span class="comment-time">منذ 3 ساعات</span>
+                            </div>
+                        </div>
+                        <div class="add-comment">
+                            <img src="https://via.placeholder.com/30x30/4B0082/ffffff?text=أ" alt="أحمد" class="comment-avatar">
+                            <input type="text" class="comment-input" placeholder="اكتب تعليقك..." onkeypress="handleCommentKeypress(event, 3)">
+                            <button class="btn btn-sm btn-primary" onclick="addComment(3)">إرسال</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="social.js"></script>
+    
+    <!-- Enhanced Chatbot Integration -->
+    <link rel="stylesheet" href="../chatbot/chatbot.css">
+    <script src="../chatbot/chatbot.js"></script>
+    
+    <!-- Social-specific Chatbot Enhancements -->
+    <script>
+        // Enhance chatbot for social page context
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(() => {
+                if (window.chatbotInstance) {
+                    // Add social-specific suggestions
+                    window.chatbotInstance.addSocialSpecificSuggestions();
+                    
+                    // Override welcome message for social context
+                    const socialWelcomeMessage = "مرحباً! أنا هنا لمساعدتك في التنقل بين صفحات الموقع والتفاعل مع المجتمع. يمكنني مساعدتك في العثور على المستخدمين أو الانتقال لأي صفحة أخرى.";
+                    window.chatbotInstance.updateWelcomeMessage(socialWelcomeMessage);
+                }
+            }, 1000);
+        });
+        
+        // Add social-specific chatbot methods
+        if (window.ModernChatbot) {
+            const originalInit = window.ModernChatbot.prototype.init;
+            window.ModernChatbot.prototype.init = function() {
+                originalInit.call(this);
+                this.addSocialSpecificSuggestions();
+            };
+            
+            window.ModernChatbot.prototype.addSocialSpecificSuggestions = function() {
+                // Add social-specific route translations
+                this.routeTranslations.set('create-post', {
+                    arabic: 'إنشاء منشور جديد',
+                    description: 'إنشاء منشور جديد لمشاركته مع المجتمع.',
+                    url: '#createPostModal',
+                    keywords: ['منشور', 'نشر', 'مشاركة', 'كتابة']
+                });
+                
+                this.routeTranslations.set('messages', {
+                    arabic: 'الرسائل',
+                    description: 'عرض وإدارة رسائلك مع المستخدمين الآخرين.',
+                    url: '../messages/messages.html',
+                    keywords: ['رسائل', 'محادثات', 'تواصل', 'دردشة']
+                });
+                
+                this.routeTranslations.set('notifications', {
+                    arabic: 'الإشعارات',
+                    description: 'عرض الإشعارات والتفاعلات الجديدة.',
+                    url: '#notificationsPanel',
+                    keywords: ['إشعارات', 'تنبيهات', 'تفاعلات', 'تحديثات']
+                });
+                
+                this.routeTranslations.set('search-users', {
+                    arabic: 'البحث عن المستخدمين',
+                    description: 'البحث عن مستخدمين محددين في المجتمع.',
+                    url: '#searchSection',
+                    keywords: ['بحث', 'مستخدمين', 'أعضاء', 'عثور']
+                });
+            };
+            
+            // Override navigation handling for social-specific actions
+            const originalExecuteNavigation = window.ModernChatbot.prototype.executeNavigation;
+            window.ModernChatbot.prototype.executeNavigation = function(navigationData) {
+                // Handle social-specific navigation
+                if (navigationData.url.startsWith('#')) {
+                    const elementId = navigationData.url.substring(1);
+                    const element = document.getElementById(elementId);
+                    
+                    if (element) {
+                        if (element.classList.contains('modal')) {
+                            // Handle modal opening
+                            element.style.display = 'flex';
+                            this.addMessage(`تم فتح ${navigationData.arabic} بنجاح!`, 'bot', 'navigation');
+                        } else if (element.classList.contains('notifications-panel')) {
+                            // Handle notifications panel
+                            element.classList.add('active');
+                            this.addMessage(`تم فتح ${navigationData.arabic} بنجاح!`, 'bot', 'navigation');
+                        } else {
+                            // Handle section scrolling
+                            element.scrollIntoView({ behavior: 'smooth' });
+                            this.addMessage(`تم الانتقال إلى ${navigationData.arabic} بنجاح!`, 'bot', 'navigation');
+                        }
+                        return;
+                    }
+                }
+                
+                // Default navigation behavior
+                originalExecuteNavigation.call(this, navigationData);
+            };
+            
+            // Add user search functionality to chatbot
+            window.ModernChatbot.prototype.handleUserSearch = function(query) {
+                const searchInput = document.getElementById('searchInput');
+                if (searchInput) {
+                    searchInput.value = query;
+                    searchInput.dispatchEvent(new Event('input'));
+                    this.addMessage(`تم البحث عن "${query}" بنجاح!`, 'bot', 'navigation');
+                }
+            };
+            
+            // Override message processing for social context
+            const originalProcessMessage = window.ModernChatbot.prototype.processMessage;
+            window.ModernChatbot.prototype.processMessage = function(message) {
+                const lowerMessage = message.toLowerCase().trim();
+                
+                // Handle user search queries
+                if (lowerMessage.includes('ابحث عن') || lowerMessage.includes('البحث عن')) {
+                    const searchTerm = message.replace(/ابحث عن|البحث عن/gi, '').trim();
+                    if (searchTerm) {
+                        this.handleUserSearch(searchTerm);
+                        return;
+                    }
+                }
+                
+                // Handle post creation requests
+                if (lowerMessage.includes('منشور') || lowerMessage.includes('نشر')) {
+                    this.addMessage("يمكنك إنشاء منشور جديد باستخدام النموذج في أعلى الصفحة.", 'bot');
+                    return;
+                }
+                
+                // Handle notification requests
+                if (lowerMessage.includes('إشعارات') || lowerMessage.includes('تنبيهات')) {
+                    this.addMessage("يمكنك عرض الإشعارات من خلال النقر على أيقونة الجرس في أعلى الصفحة.", 'bot');
+                    return;
+                }
+                
+                // Default message processing
+                originalProcessMessage.call(this, message);
+            };
+        }
+    </script>
+    <script src="../../shared/navigation.js"></script>
+</body>
+</html>

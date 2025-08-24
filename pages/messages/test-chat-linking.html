@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Chat Linking - Messages</title>
+    <link rel="stylesheet" href="messages.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f8fafc;
+            color: #2d3748;
+            line-height: 1.6;
+            direction: rtl;
+            padding: 2rem;
+        }
+        .test-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .test-section {
+            margin-bottom: 2rem;
+            padding: 1rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+        }
+        .instructions {
+            background: #e6fffa;
+            border: 1px solid #4fd1c7;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 2rem;
+        }
+        .status {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 2rem;
+        }
+        .test-button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            cursor: pointer;
+            margin: 0.5rem;
+            transition: background-color 0.3s ease;
+        }
+        .test-button:hover {
+            background: #5a67d8;
+        }
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+        .feature-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .feature-list li:last-child {
+            border-bottom: none;
+        }
+        .feature-list li::before {
+            content: '✅';
+            margin-left: 0.5rem;
+        }
+        .demo-chat-actions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        .demo-chat-action {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            background: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: right;
+        }
+        .demo-chat-action:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-color: #4B0082;
+        }
+        .demo-chat-action i {
+            font-size: 1.5rem;
+            width: 24px;
+            text-align: center;
+            color: #4B0082;
+        }
+        .demo-chat-action.primary {
+            background: #4B0082;
+            color: white;
+        }
+        .demo-chat-action.primary i {
+            color: white;
+        }
+        .demo-chat-action.primary:hover {
+            background: #3a0066;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>Test Chat Linking - Messages</h1>
+        
+        <div class="status">
+            <h3>✅ Implementation Status:</h3>
+            <p><strong>Primary Action Button:</strong> ✅ Connected to chat page</p>
+            <p><strong>New Message Button:</strong> ✅ Opens chat with new=true parameter</p>
+            <p><strong>Group Chat Button:</strong> ✅ Opens chat with group=true parameter</p>
+            <p><strong>Individual Chat:</strong> ✅ Opens chat with userId and userName parameters</p>
+            <p><strong>Dynamic BaseURL:</strong> ✅ Correct relative path to chat page</p>
+            <p><strong>Loading States:</strong> ✅ Toast notifications and loading indicators</p>
+        </div>
+        
+        <div class="instructions">
+            <h3>تعليمات الاختبار:</h3>
+            <p>اختبر ربط أزرار الرسائل بصفحة المحادثة:</p>
+            <ul class="feature-list">
+                <li><strong>زر "رسالة جديدة":</strong> انقر على زر "action-btn primary" لفتح محادثة جديدة</li>
+                <li><strong>زر "محادثة جماعية":</strong> انقر على زر إنشاء محادثة جماعية</li>
+                <li><strong>المحادثات الفردية:</strong> انقر على أي محادثة لفتحها مع المستخدم</li>
+                <li><strong>المسارات الصحيحة:</strong> تأكد من أن المسارات تستخدم ../chat/chat.html</li>
+                <li><strong>المعاملات:</strong> تأكد من تمرير المعاملات الصحيحة (new=true, group=true, userId, userName)</li>
+                <li><strong>الإشعارات:</strong> ستظهر إشعارات تأكيد لكل عملية</li>
+            </ul>
+        </div>
+        
+        <div class="test-section">
+            <h2>Test 1: Primary Action Button</h2>
+            <p>اختبر زر "رسالة جديدة" (action-btn primary):</p>
+            <button class="test-button" onclick="testComposeNewMessage()">Test Compose New Message</button>
+            <p>هذا الزر يجب أن يفتح صفحة المحادثة مع المعامل new=true</p>
+        </div>
+        
+        <div class="test-section">
+            <h2>Test 2: Chat Actions Preview</h2>
+            <p>معاينة إجراءات المحادثة:</p>
+            <div class="demo-chat-actions">
+                <div class="demo-chat-action primary" onclick="testComposeNewMessage()">
+                    <i class="fas fa-plus"></i>
+                    <span>رسالة جديدة</span>
+                </div>
+                <div class="demo-chat-action" onclick="testStartGroupChat()">
+                    <i class="fas fa-users"></i>
+                    <span>محادثة جماعية</span>
+                </div>
+                <div class="demo-chat-action" onclick="testOpenIndividualChat()">
+                    <i class="fas fa-comment"></i>
+                    <span>محادثة فردية</span>
+                </div>
+                <div class="demo-chat-action" onclick="testStartChatWithUser()">
+                    <i class="fas fa-user-plus"></i>
+                    <span>بدء محادثة مع مستخدم</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="test-section">
+            <h2>Test 3: URL Parameters</h2>
+            <p>معاينة معاملات URL:</p>
+            <div style="background: #f7fafc; padding: 1rem; border-radius: 8px; margin: 1rem 0;">
+                <h4>معاملات URL المتوقعة:</h4>
+                <p><strong>رسالة جديدة:</strong> ../chat/chat.html?new=true</p>
+                <p><strong>محادثة جماعية:</strong> ../chat/chat.html?group=true</p>
+                <p><strong>محادثة فردية:</strong> ../chat/chat.html?userId=123&userName=أحمد محمد</p>
+                <p><strong>بدء محادثة:</strong> ../chat/chat.html?userId=456&userName=سارة أحمد</p>
+            </div>
+        </div>
+        
+        <div class="test-section">
+            <h2>Test 4: Function Verification</h2>
+            <p>اختبر أن جميع دوال المحادثة متاحة:</p>
+            <button class="test-button" onclick="testFunctions()">Test All Functions</button>
+            <div id="function-results" style="margin-top: 1rem; padding: 1rem; background: #f7fafc; border-radius: 6px; display: none;"></div>
+        </div>
+        
+        <div class="test-section">
+            <h2>Test 5: Real Page Testing</h2>
+            <p>انتقل إلى صفحة الرسائل لاختبار الوظائف الحقيقية:</p>
+            <button class="test-button" onclick="openMessagesPage()">Open Messages Page</button>
+            <button class="test-button" onclick="openChatPage()">Open Chat Page</button>
+        </div>
+        
+        <div class="test-section">
+            <h2>Test 6: Chat Linking Structure</h2>
+            <p>هيكل ربط المحادثة:</p>
+            <ul>
+                <li><strong>Button Class:</strong> action-btn primary</li>
+                <li><strong>Function:</strong> composeNewMessage()</li>
+                <li><strong>Target Page:</strong> ../chat/chat.html</li>
+                <li><strong>Parameters:</strong> new=true, group=true, userId, userName</li>
+                <li><strong>BaseURL:</strong> Dynamic based on protocol</li>
+                <li><strong>Loading:</strong> Toast notifications and delays</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // Test compose new message
+        function testComposeNewMessage() {
+            showNotification('جاري فتح نافذة الرسالة الجديدة...', 'info');
+            setTimeout(() => {
+                showNotification('تم فتح نافذة الرسالة الجديدة', 'success');
+                // Simulate navigation
+                console.log('Would navigate to: ../chat/chat.html?new=true');
+            }, 1000);
+        }
+        
+        // Test start group chat
+        function testStartGroupChat() {
+            showNotification('جاري إنشاء محادثة جماعية...', 'info');
+            setTimeout(() => {
+                showNotification('تم إنشاء محادثة جماعية', 'success');
+                console.log('Would navigate to: ../chat/chat.html?group=true');
+            }, 1000);
+        }
+        
+        // Test open individual chat
+        function testOpenIndividualChat() {
+            const userId = '123';
+            const userName = 'أحمد محمد';
+            showNotification('جاري فتح المحادثة...', 'info');
+            setTimeout(() => {
+                showNotification('تم فتح المحادثة', 'success');
+                console.log(`Would navigate to: ../chat/chat.html?userId=${userId}&userName=${encodeURIComponent(userName)}`);
+            }, 1000);
+        }
+        
+        // Test start chat with user
+        function testStartChatWithUser() {
+            const userId = '456';
+            const userName = 'سارة أحمد';
+            showNotification('جاري بدء محادثة جديدة...', 'info');
+            setTimeout(() => {
+                showNotification('تم بدء محادثة جديدة', 'success');
+                console.log(`Would navigate to: ../chat/chat.html?userId=${userId}&userName=${encodeURIComponent(userName)}`);
+            }, 1000);
+        }
+        
+        // Test all functions
+        function testFunctions() {
+            const resultsDiv = document.getElementById('function-results');
+            const functions = [
+                'composeNewMessage',
+                'startGroupChat',
+                'openChat',
+                'startChatWithUser',
+                'showNotification'
+            ];
+            
+            let results = '<h4>Function Test Results:</h4><ul>';
+            let allPassed = true;
+            
+            functions.forEach(funcName => {
+                if (typeof window[funcName] === 'function') {
+                    results += `<li style="color: green;">✅ ${funcName} - Available</li>`;
+                } else {
+                    results += `<li style="color: red;">❌ ${funcName} - Missing</li>`;
+                    allPassed = false;
+                }
+            });
+            
+            results += '</ul>';
+            results += `<p><strong>Overall Status:</strong> ${allPassed ? '✅ All functions available' : '❌ Some functions missing'}</p>`;
+            
+            resultsDiv.innerHTML = results;
+            resultsDiv.style.display = 'block';
+        }
+        
+        // Open messages page
+        function openMessagesPage() {
+            window.open('messages.html', '_blank');
+        }
+        
+        // Open chat page
+        function openChatPage() {
+            window.open('../chat/chat.html?new=true', '_blank');
+        }
+        
+        // Show notification function
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.innerHTML = `
+                <div class="notification-content">
+                    <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : type === 'warning' ? 'exclamation-triangle' : 'info-circle'}"></i>
+                    <span>${message}</span>
+                </div>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.classList.add('show');
+            }, 100);
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+                setTimeout(() => {
+                    notification.remove();
+                }, 300);
+            }, 3000);
+        }
+        
+        // Document ready
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Chat linking test page loaded');
+            console.log('Testing chat linking functionality');
+            
+            // Check if functions are available
+            const requiredFunctions = [
+                'composeNewMessage', 'startGroupChat', 'openChat', 'startChatWithUser'
+            ];
+            
+            console.log('Required functions check:');
+            requiredFunctions.forEach(funcName => {
+                console.log(`${funcName}: ${typeof window[funcName] === 'function' ? '✅ Available' : '❌ Missing'}`);
+            });
+        });
+    </script>
+</body>
+</html>

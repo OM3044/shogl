@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الفرص المتاحة - شغلك</title>
+    <link rel="stylesheet" href="opportunities.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="../..//Images/تصميم بدون عنوان_20250805_160357_٠٠٠٠ (1).png" alt="شغلك Logo" class="nav-logo" width="50" height="50">
+                <h2><i class="#"></i> </h2>
+            </div>
+            <div class="nav-menu">
+                <a href="../..//index.html" class="nav-link"><i class="fas fa-home"></i>الرئيسية</a>
+                <a href="../onboarding/onboarding.html" class="nav-link"><i class="fas fa-user-plus"></i>الترحيب</a>
+                <a href="../opportunities/opportunities.html" class="nav-link active"><i class="fas fa-briefcase"></i>الفرص</a>
+                <a href="../profile/profile.html" class="nav-link"><i class="fas fa-user"></i>الملف الشخصي</a>
+                <a href="../social/social.html" class="nav-link"><i class="fas fa-users"></i>المجتمع</a>
+                <a href="../messages/messages.html" class="nav-link"><i class="fas fa-envelope"></i>الرسائل</a>
+                <a href="../reporting/reporting.html" class="nav-link"><i class="fas fa-flag"></i>الإبلاغ</a>
+                <a href="../projects/project-submission.html" class="nav-link"><i class="fas fa-upload"></i>تقديم المشروع</a>
+            </div>
+            <div class="nav-user">
+                
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Enhanced Success/Error Notification -->
+    <div class="notification" id="notification">
+        <div class="notification-content">
+            <i class="notification-icon"></i>
+            <span class="notification-message"></span>
+        </div>
+        <button class="notification-close" onclick="hideNotification()">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+
+    <!-- User Type Selector -->
+    <div class="user-type-selector fade-in">
+        <div class="container">
+            <div class="selector-content">
+                <h3>اختر نوع المستخدم</h3>
+                <div class="user-type-buttons">
+                    <button class="user-type-btn active" data-type="freelancer" id="freelancerBtn">
+                        <i class="fas fa-user-tie"></i>
+                        <span>مستقل</span>
+                        <small>تصفح الفرص المتاحة</small>
+                    </button>
+                    <button class="user-type-btn" data-type="client" id="clientBtn">
+                        <i class="fas fa-user-check"></i>
+                        <span>عميل</span>
+                        <small>نشر وإدارة الفرص</small>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Enhanced Quick Apply Modal -->
+    <div class="modal" id="applyModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-icon">
+                    <i class="fas fa-paper-plane"></i>
+                </div>
+                <h3>تقديم على الفرصة</h3>
+                <button class="close-modal" id="closeModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="opportunity-summary" id="modalOpportunitySummary">
+                    <!-- Opportunity details will be inserted here -->
+                </div>
+                <form class="apply-form" id="applyForm">
+                    <div class="form-group">
+                        <label for="proposalText">اقتراحك للمشروع <span class="required">*</span></label>
+                        <textarea id="proposalText" placeholder="اكتب اقتراحك للمشروع وأسباب اختيارك، خبراتك السابقة، وخطة العمل..." rows="6" required class="modern-textarea"></textarea>
+                        <div class="char-counter">
+                            <span id="proposalCharCount">0</span> / 1000 حرف
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="proposedPrice">السعر المقترح (جنيه مصري) <span class="required">*</span></label>
+                            <input type="number" id="proposedPrice" placeholder="أدخل السعر المقترح" required class="modern-input">
+                        </div>
+                        <div class="form-group">
+                            <label for="deliveryTime">مدة التسليم (بالأيام) <span class="required">*</span></label>
+                            <input type="number" id="deliveryTime" placeholder="عدد الأيام" required class="modern-input">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="portfolioLink">رابط أعمالك السابقة (اختياري)</label>
+                        <input type="url" id="portfolioLink" placeholder="https://example.com" class="modern-input">
+                    </div>
+                    <div class="form-group">
+                        <label for="additionalFiles">ملفات إضافية (اختياري)</label>
+                        <input type="file" id="additionalFiles" multiple accept=".pdf,.doc,.docx,.jpg,.png" class="modern-input">
+                        <div class="file-info">الحد الأقصى: 5 ميجابايت لكل ملف</div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary modern-btn" id="cancelApply">إلغاء</button>
+                <button class="btn btn-primary modern-btn" id="submitApply">
+                    <span class="btn-text">إرسال التقديم</span>
+                    <span class="btn-loading" style="display: none;">
+                        <i class="fas fa-spinner fa-spin"></i>
+                        جاري الإرسال...
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Post New Opportunity Modal -->
+    <div class="modal" id="postOpportunityModal">
+        <div class="modal-content large-modal">
+            <div class="modal-header">
+                <div class="modal-icon">
+                    <i class="fas fa-plus-circle"></i>
+                </div>
+                <h3>نشر فرصة جديدة</h3>
+                <button class="close-modal" id="closePostModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="post-opportunity-form" id="postOpportunityForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="opportunityTitle">عنوان الفرصة <span class="required">*</span></label>
+                            <input type="text" id="opportunityTitle" placeholder="مثال: مطور ويب متخصص في React" required class="modern-input">
+                        </div>
+                        <div class="form-group">
+                            <label for="opportunityCategory">التخصص <span class="required">*</span></label>
+                            <select id="opportunityCategory" required class="modern-select">
+                                <option value="">اختر التخصص</option>
+                                <option value="programming">البرمجة</option>
+                                <option value="design">التصميم</option>
+                                <option value="marketing">التسويق الرقمي</option>
+                                <option value="content">المحتوى والترجمة</option>
+                                <option value="data">إدخال/تحليل البيانات</option>
+                                <option value="project">ادارة المشاريع</option>
+                                <option value="support">الدعم الفني</option>
+                                <option value="consulting">الاستشارات</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="opportunityDescription">وصف الفرصة <span class="required">*</span></label>
+                        <textarea id="opportunityDescription" placeholder="اكتب وصفاً مفصلاً للفرصة والمتطلبات والمهارات المطلوبة..." rows="6" required class="modern-textarea"></textarea>
+                        <div class="char-counter">
+                            <span id="descriptionCharCount">0</span> / 2000 حرف
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="opportunitySalary">الراتب (جنيه مصري) <span class="required">*</span></label>
+                            <input type="number" id="opportunitySalary" placeholder="أدخل الراتب" required class="modern-input">
+                        </div>
+                        <div class="form-group">
+                            <label for="opportunityDuration">مدة المشروع <span class="required">*</span></label>
+                            <select id="opportunityDuration" required class="modern-select">
+                                <option value="">اختر المدة</option>
+                                <option value="short">قصيرة (أقل من شهر)</option>
+                                <option value="medium">متوسطة (1-3 أشهر)</option>
+                                <option value="long">طويلة (أكثر من 3 أشهر)</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="opportunityExperience">مستوى الخبرة المطلوب <span class="required">*</span></label>
+                            <select id="opportunityExperience" required class="modern-select">
+                                <option value="">اختر المستوى</option>
+                                <option value="beginner">مبتدئ</option>
+                                <option value="intermediate">متوسط</option>
+                                <option value="expert">خبير</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="opportunityDeadline">الموعد النهائي للتقديم <span class="required">*</span></label>
+                            <input type="date" id="opportunityDeadline" required class="modern-input">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="opportunityTags">العلامات (اختياري)</label>
+                        <input type="text" id="opportunityTags" placeholder="أدخل العلامات مفصولة بفواصل: React, JavaScript, Web Development" class="modern-input">
+                        <div class="tags-info">ستساعد العلامات في جعل فرصتك أكثر وضوحاً للمرشحين المناسبين</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="opportunityFiles">ملفات مرفقة (اختياري)</label>
+                        <input type="file" id="opportunityFiles" multiple accept=".pdf,.doc,.docx,.jpg,.png" class="modern-input">
+                        <div class="file-info">يمكنك رفع ملفات إضافية مثل المواصفات التفصيلية أو أمثلة للعمل المطلوب</div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary modern-btn" id="cancelPost">إلغاء</button>
+                <button class="btn btn-primary modern-btn" id="submitPost">
+                    <span class="btn-text">نشر الفرصة</span>
+                    <span class="btn-loading" style="display: none;">
+                        <i class="fas fa-spinner fa-spin"></i>
+                        جاري النشر...
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Volunteer Request Modal -->
+    <div class="modal" id="volunteerModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-icon">
+                    <i class="fas fa-hand-holding-heart"></i>
+                </div>
+                <h3>طلب تطوع</h3>
+                <button class="close-modal" onclick="closeVolunteerModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="volunteer-info">
+                    <h4>طلب من <span id="volunteerUserName">أحمد سعيد</span></h4>
+                    <p>يريد التطوع في مشروعك لزيادة تقييمه وفرص الحصول على التحقق من المنصة</p>
+                </div>
+                <form class="volunteer-form" id="volunteerForm">
+                    <div class="form-group">
+                        <label for="volunteerMessage">رسالة التطوع</label>
+                        <textarea id="volunteerMessage" rows="4" placeholder="اكتب رسالتك للمتطوع..." class="modern-textarea"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="volunteerPrice">السعر المقترح (اختياري)</label>
+                        <input type="number" id="volunteerPrice" placeholder="أدخل السعر" class="modern-input">
+                    </div>
+                    <div class="form-group">
+                        <label for="volunteerDuration">مدة المشروع</label>
+                        <select id="volunteerDuration" class="modern-select">
+                            <option value="1-3">1-3 أيام</option>
+                            <option value="1-2">1-2 أسبوع</option>
+                            <option value="2-4">2-4 أسابيع</option>
+                            <option value="1-3">1-3 أشهر</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeVolunteerModal()">إلغاء</button>
+                <button class="btn btn-primary" onclick="sendVolunteerRequest()">
+                    <i class="fas fa-paper-plane"></i>
+                    إرسال الطلب
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Enhanced Header Section -->
+            <div class="page-header fade-in">
+                <div class="header-content">
+                    <h1><i class="fas fa-briefcase"></i> الفرص المتاحة</h1>
+                    <p id="headerDescription">اكتشف أفضل الفرص في العمل الحر وابدأ رحلتك المهنية</p>
+                </div>
+                <div class="header-actions" id="headerActions">
+                    <!-- Actions will be dynamically added based on user type -->
+                </div>
+                <div class="header-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">1,247</div>
+                        <div class="stat-label">فرصة متاحة</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">98%</div>
+                        <div class="stat-label">معدل النجاح</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">24</div>
+                        <div class="stat-label">ساعة استجابة</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Enhanced Filters Section -->
+            <div class="filters-section fade-in">
+                <div class="filters-row">
+                    <div class="filter-group">
+                        <label for="categoryFilter">التخصص</label>
+                        <select id="categoryFilter" class="filter-select modern-select">
+                            <option value="">جميع التخصصات</option>
+                            <option value="programming">البرمجة</option>
+                            <option value="design">التصميم</option>
+                            <option value="marketing">التسويق الرقمي</option>
+                            <option value="content">المحتوى والترجمة</option>
+                            <option value="data">إدخال/تحليل البيانات</option>
+                            <option value="project">ادارة المشاريع</option>
+                            <option value="support">الدعم الفني</option>
+                            <option value="consulting">الاستشارات</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label for="experienceFilter">الخبرة</label>
+                        <select id="experienceFilter" class="filter-select modern-select">
+                            <option value="">جميع المستويات</option>
+                            <option value="beginner">مبتدئ</option>
+                            <option value="intermediate">متوسط</option>
+                            <option value="expert">خبير</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label for="salaryFilter">الراتب</label>
+                        <select id="salaryFilter" class="filter-select modern-select">
+                            <option value="">جميع الرواتب</option>
+                            <option value="0-2000">حتى 2000 جنيه</option>
+                            <option value="2000-5000">2000 - 5000 جنيه</option>
+                            <option value="5000-10000">5000 - 10000 جنيه</option>
+                            <option value="10000+">أكثر من 10000 جنيه</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label for="durationFilter">المدة</label>
+                        <select id="durationFilter" class="filter-select modern-select">
+                            <option value="">جميع المدد</option>
+                            <option value="short">قصيرة (أقل من شهر)</option>
+                            <option value="medium">متوسطة (1-3 أشهر)</option>
+                            <option value="long">طويلة (أكثر من 3 أشهر)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="search-section">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="searchInput" placeholder="ابحث عن فرص عمل..." class="modern-input">
+                    </div>
+                    <button class="clear-filters-btn modern-btn" id="clearFiltersBtn">
+                        <i class="fas fa-times"></i>
+                        مسح الفلاتر
+                    </button>
+                </div>
+            </div>
+
+            <!-- Enhanced Results Section -->
+            <div class="results-section">
+                <div class="results-header fade-in">
+                    <div class="results-count">
+                        <span id="resultsCount">24</span> فرصة متاحة
+                    </div>
+                    <div class="sort-options">
+                        <label for="sortSelect">ترتيب حسب:</label>
+                        <select id="sortSelect" class="sort-select modern-select">
+                            <option value="newest">الأحدث</option>
+                            <option value="salary-high">الأعلى راتباً</option>
+                            <option value="salary-low">الأقل راتباً</option>
+                            <option value="rating">الأعلى تقييماً</option>
+                            <option value="deadline">الأقرب موعداً</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Enhanced Opportunities Grid -->
+                <div class="opportunities-grid" id="opportunitiesGrid">
+                    <!-- Opportunity cards will be dynamically generated -->
+                </div>
+
+                <!-- Enhanced Load More Button -->
+                <div class="load-more-section fade-in">
+                    <button class="load-more-btn modern-btn" id="loadMoreBtn">
+                        <span class="btn-text">
+                            <i class="fas fa-plus"></i>
+                            عرض المزيد
+                        </span>
+                        <span class="btn-loading" style="display: none;">
+                            <i class="fas fa-spinner fa-spin"></i>
+                            جاري التحميل...
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="opportunities.js"></script>
+    
+    <!-- Enhanced Chatbot Integration -->
+    <link rel="stylesheet" href="../chatbot/chatbot.css">
+    <script src="../chatbot/chatbot.js"></script>
+    
+    <!-- Opportunities-specific Chatbot Enhancements -->
+    <script>
+        // Enhance chatbot for opportunities page context
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(() => {
+                if (window.chatbotInstance) {
+                    // Add opportunities-specific suggestions
+                    window.chatbotInstance.addOpportunitiesSpecificSuggestions();
+                    
+                    // Override welcome message for opportunities context
+                    const opportunitiesWelcomeMessage = "مرحباً! أنا هنا لمساعدتك في العثور على أفضل الفرص المناسبة لمهاراتك. يمكنني مساعدتك في البحث أو الانتقال لأي صفحة أخرى.";
+                    window.chatbotInstance.updateWelcomeMessage(opportunitiesWelcomeMessage);
+                }
+            }, 1000);
+        });
+        
+        // Add opportunities-specific chatbot methods
+        if (window.ModernChatbot) {
+            const originalInit = window.ModernChatbot.prototype.init;
+            window.ModernChatbot.prototype.init = function() {
+                originalInit.call(this);
+                this.addOpportunitiesSpecificSuggestions();
+            };
+            
+            window.ModernChatbot.prototype.addOpportunitiesSpecificSuggestions = function() {
+                // Add opportunities-specific route translations
+                this.routeTranslations.set('search-opportunities', {
+                    arabic: 'البحث عن الفرص',
+                    description: 'البحث عن فرص عمل جديدة باستخدام الفلاتر المتقدمة.',
+                    url: '#searchSection',
+                    keywords: ['بحث', 'فرص', 'عمل', 'فلترة']
+                });
+                
+                this.routeTranslations.set('apply-job', {
+                    arabic: 'تقديم على وظيفة',
+                    description: 'تقديم طلب للوظائف المتاحة مع اقتراحك وسعرك.',
+                    url: '#applyModal',
+                    keywords: ['تقديم', 'طلب', 'وظيفة', 'اقتراح']
+                });
+                
+                this.routeTranslations.set('filters', {
+                    arabic: 'فلاتر البحث',
+                    description: 'تطبيق فلاتر متقدمة للعثور على الفرص المناسبة.',
+                    url: '#filtersSection',
+                    keywords: ['فلاتر', 'تصفية', 'بحث', 'خيارات']
+                });
+                
+                this.routeTranslations.set('categories', {
+                    arabic: 'التخصصات',
+                    description: 'تصفح الفرص حسب التخصص والمجال.',
+                    url: '#categoryFilter',
+                    keywords: ['تخصصات', 'مجالات', 'فئات', 'تصنيف']
+                });
+                
+                this.routeTranslations.set('post-opportunity', {
+                    arabic: 'نشر فرصة جديدة',
+                    description: 'نشر فرصة عمل جديدة للعثور على المرشحين المناسبين.',
+                    url: '#postOpportunityModal',
+                    keywords: ['نشر', 'فرصة', 'جديدة', 'وظيفة']
+                });
+            };
+            
+            // Override navigation handling for opportunities-specific actions
+            const originalExecuteNavigation = window.ModernChatbot.prototype.executeNavigation;
+            window.ModernChatbot.prototype.executeNavigation = function(navigationData) {
+                // Handle opportunities-specific navigation
+                if (navigationData.url.startsWith('#')) {
+                    const elementId = navigationData.url.substring(1);
+                    const element = document.getElementById(elementId);
+                    
+                    if (element) {
+                        if (element.classList.contains('modal')) {
+                            // Handle modal opening
+                            element.style.display = 'flex';
+                            this.addMessage(`تم فتح ${navigationData.arabic} بنجاح!`, 'bot', 'navigation');
+                        } else {
+                            // Handle section scrolling
+                            element.scrollIntoView({ behavior: 'smooth' });
+                            this.addMessage(`تم الانتقال إلى ${navigationData.arabic} بنجاح!`, 'bot', 'navigation');
+                        }
+                        return;
+                    }
+                }
+                
+                // Default navigation behavior
+                originalExecuteNavigation.call(this, navigationData);
+            };
+            
+            // Add search functionality to chatbot
+            window.ModernChatbot.prototype.handleOpportunitySearch = function(query) {
+                const searchInput = document.getElementById('searchInput');
+                if (searchInput) {
+                    searchInput.value = query;
+                    searchInput.dispatchEvent(new Event('input'));
+                    this.addMessage(`تم البحث عن "${query}" بنجاح!`, 'bot', 'navigation');
+                }
+            };
+            
+            // Override message processing for opportunities context
+            const originalProcessMessage = window.ModernChatbot.prototype.processMessage;
+            window.ModernChatbot.prototype.processMessage = function(message) {
+                const lowerMessage = message.toLowerCase().trim();
+                
+                // Handle search queries
+                if (lowerMessage.includes('ابحث عن') || lowerMessage.includes('البحث عن')) {
+                    const searchTerm = message.replace(/ابحث عن|البحث عن/gi, '').trim();
+                    if (searchTerm) {
+                        this.handleOpportunitySearch(searchTerm);
+                        return;
+                    }
+                }
+                
+                // Handle filter requests
+                if (lowerMessage.includes('فلتر') || lowerMessage.includes('تصفية')) {
+                    this.addMessage("يمكنك استخدام الفلاتر في أعلى الصفحة لتصفية الفرص حسب التخصص والخبرة والراتب.", 'bot');
+                    return;
+                }
+                
+                // Handle post opportunity requests
+                if (lowerMessage.includes('نشر فرصة') || lowerMessage.includes('إضافة فرصة')) {
+                    const postModal = document.getElementById('postOpportunityModal');
+                    if (postModal) {
+                        postModal.style.display = 'flex';
+                        this.addMessage("تم فتح نموذج نشر الفرصة الجديدة!", 'bot', 'navigation');
+                    }
+                    return;
+                }
+                
+                // Default message processing
+                originalProcessMessage.call(this, message);
+            };
+        }
+    </script>
+</body>
+</html>
