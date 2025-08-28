@@ -400,3 +400,4 @@ const profileCompletionStyles = `
 const styleSheet = document.createElement('style');
 styleSheet.textContent = profileCompletionStyles;
 document.head.appendChild(styleSheet);
+
